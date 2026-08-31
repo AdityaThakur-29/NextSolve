@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWS ROI & Cost Calculator</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2, h3 { color: #2c3e50; margin-top: 0; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px; color: #555; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .metric { background: #e8f4f8; padding: 15px; border-radius: 6px; border-left: 5px solid #3498db; }
+        .metric.highlight { background: #eafaf1; border-left: 5px solid #2ecc71; }
+        .metric-title { font-size: 12px; text-transform: uppercase; color: #7f8c8d; font-weight: bold; }
+        .metric-value { font-size: 24px; font-weight: bold; color: #2c3e50; margin-top: 5px; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- INPUT SECTION -->
+    <div class="card">
+        <h2>System Parameters</h2>
+        
+        <h3>Demographics & Materials</h3>
+        <div class="form-group">
+            <label>Total Students</label>
+            <input type="number" id="students" value="1500" oninput="calculateROI()">
+        </div>
+        <div class="form-group">
+            <label>Answer Sheet Cost (₹)</label>
+            <input type="number" id="ansCost" value="2" oninput="calculateROI()">
+        </div>
+        <div class="form-group">
+            <label>Question Slip Cost (₹)</label>
+            <input type="number" id="qCost" value="2" oninput="calculateROI()">
+        </div>
+
+        <h3>Exam Frequency</h3>
+        <div class="form-group">
+            <label>Practical Subjects per Year</label>
+            <input type="number" id="pracSubj" value="4" oninput="calculateROI()">
+        </div>
+        <div class="form-group">
+            <label>Practical Exams per Year (per subject)</label>
+            <input type="number" id="pracExams" value="2" oninput="calculateROI()">
+        </div>
+        <div class="form-group">
+            <label>Internal Subjects per Year</label>
+            <input type="number" id="intSubj" value="5" oninput="calculateROI()">
+        </div>
+        <div class="form-group">
+            <label>Internal Exams per Year (per subject)</label>
+            <input type="number" id="intExams" value="2" oninput="calculateROI()">
+        </div>
+
+        <h3>Monthly Salary Ranges (₹)</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group">
+                <label>HOD Min Salary</label>
+                <input type="number" id="hodMin" value="50000" oninput="calculateROI()">
+            </div>
+            <div class="form-group">
+                <label>HOD Max Salary</label>
+                <input type="number" id="hodMax" value="100000" oninput="calculateROI()">
+            </div>
+            <div class="form-group">
+                <label>Teacher Min Salary</label>
+                <input type="number" id="teaMin" value="20000" oninput="calculateROI()">
+            </div>
+            <div class="form-group">
+                <label>Teacher Max Salary</label>
+                <input type="number" id="teaMax" value="50000" oninput="calculateROI()">
+            </div>
+        </div>
+    </div>
+
+    <!-- OUTPUT SECTION -->
+    <div class="card">
+        <h2>PWS Impact Dashboard</h2>
+        <div class="results-grid">
+            <div class="metric">
+                <div class="metric-title">Annual Paper Cost</div>
+                <div class="metric-value" id="outPaperCost">₹0</div>
+            </div>
+            <div class="metric">
+                <div class="metric-title">Teacher Hourly Rate</div>
+                <div class="metric-value" id="outTeaHour">₹0</div>
+            </div>
+            <div class="metric">
+                <div class="metric-title">Admin Hours (Before)</div>
+                <div class="metric-value" id="outHrsBefore">0 hrs</div>
+            </div>
+            <div class="metric">
+                <div class="metric-title">Admin Hours (After PWS)</div>
+                <div class="metric-value" id="outHrsAfter">0 hrs</div>
+            </div>
+            <div class="metric">
+                <div class="metric-title">Faculty Cost (Before)</div>
+                <div class="metric-value" id="outCostBefore">₹0</div>
+            </div>
+            <div class="metric">
+                <div class="metric-title">Faculty Cost (After PWS)</div>
+                <div class="metric-value" id="outCostAfter">₹0</div>
+            </div>
+        </div>
+        <br>
+        <div class="metric highlight" style="text-align: center; padding: 25px;">
+            <div class="metric-title" style="font-size: 16px;">Total Annual Institutional Savings</div>
+            <div class="metric-value" id="outTotalSavings" style="font-size: 36px;">₹0</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getVal(id) { return parseFloat(document.getElementById(id).value) || 0; }
+    function formatCurrency(num) { return "₹" + num.toLocaleString('en-IN', { maximumFractionDigits: 0 }); }
+    function formatNum(num) { return num.toLocaleString('en-IN', { maximumFractionDigits: 1 }) + " hrs"; }
+
+    function calculateROI() {
+        // Inputs
+        let students = getVal("students");
+        let paperCost = getVal("ansCost") + getVal("qCost");
+        let pSubj = getVal("pracSubj"), pExams = getVal("pracExams");
+        let iSubj = getVal("intSubj"), iExams = getVal("intExams");
+        let teaMin = getVal("teaMin"), teaMax = getVal("teaMax");
+
+        // 1. Paper Costs
+        let totalInstances = (students * pSubj * pExams) + (students * iSubj * iExams);
+        let annualPaperCost = totalInstances * paperCost;
+
+        // 2. Salary Calculations
+        let teaAvg = (teaMin + teaMax) / 2;
+        let teaHourly = (teaAvg / 30) / 8;
+
+        // 3. Time Calculations (Based on Workflow Data)
+        let classes = students / 60;
+        let pInstances = students * pSubj * pExams;
+        let iInstances = students * iSubj * iExams;
+
+        let timeBeforeMins = 
+            (60 * pSubj * pExams) + // Prac Q-Paper
+            (15 * classes * pSubj * pExams) + // Prac Arrange
+            (5 * pInstances) + // Prac Grade + Totals (2.5 + 2.5)
+            (20 * classes * pSubj * pExams) + // Prac Attendance
+            (150 * iSubj * iExams) + // Int Q-Paper + Arrange (75 + 75)
+            (3 * iInstances) + // Int Check MCQ
+            (225 * classes * iSubj * iExams); // Int Totals + Attendance (180 + 45)
+            
+        let timeAfterMins = 
+            (10 * pSubj * pExams) + 
+            (5 * classes * pSubj * pExams) + 
+            (3 * iSubj * iExams) + 
+            (0.05 * classes * iSubj * iExams);
+
+        let hrsBefore = timeBeforeMins / 60;
+        let hrsAfter = timeAfterMins / 60;
+        let costBefore = hrsBefore * teaHourly;
+        let costAfter = hrsAfter * teaHourly;
+        let totalSavings = annualPaperCost + (costBefore - costAfter);
+
+        // Update UI
+        document.getElementById("outPaperCost").innerText = formatCurrency(annualPaperCost);
+        document.getElementById("outTeaHour").innerText = formatCurrency(teaHourly) + "/hr";
+        document.getElementById("outHrsBefore").innerText = formatNum(hrsBefore);
+        document.getElementById("outHrsAfter").innerText = formatNum(hrsAfter);
+        document.getElementById("outCostBefore").innerText = formatCurrency(costBefore);
+        document.getElementById("outCostAfter").innerText = formatCurrency(costAfter);
+        document.getElementById("outTotalSavings").innerText = formatCurrency(totalSavings);
+    }
+    
+    // Initial calculation on load
+    calculateROI();
+</script>
+
+</body>
+</html>
