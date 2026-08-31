@@ -10,6 +10,7 @@ import FAQAccordion from '@/components/FAQAccordion';
 import ComparisonTable from '@/components/ComparisonTable';
 import ContactForm from '@/components/ContactForm';
 import { Button, Button2, Button3 } from '@/components/ui/button';
+import { MacbookScroll } from '@/components/ui/macbook-scroll';
 import { AnimatedCounter, FadeIn, StaggerContainer, StaggerItem } from '@/components/Animations';
 import { features } from '@/data/features';
 import { stats, pillars, pwsWorkflow, traditionalWorkflow, securityFeatures } from '@/data/content';
@@ -152,9 +153,20 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero Interactive Showcase */}
-            <div className="mt-12 lg:mt-16 max-w-5xl mx-auto">
-              <ProductMockup />
+            {/* Hero Laptop Scroll Showcase */}
+            <div className="w-full overflow-hidden pt-8">
+              <MacbookScroll
+                src="/assets/proof/proof-1.jpeg"
+                showGradient={false}
+                title={
+                  <span className="text-white text-xl sm:text-2xl font-bold">
+                    Designed for Modern College Computer Labs. <br />
+                    <span className="text-teal-400 font-semibold text-base sm:text-lg">
+                      Scroll to open the examination environment.
+                    </span>
+                  </span>
+                }
+              />
             </div>
           </div>
         </section>
@@ -266,6 +278,29 @@ export default function HomePage() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* SECTION 6 — PRODUCT SHOWCASE (Interactive Views) */}
+        {/* ============================================================ */}
+        <section className="section-padding bg-navy-950 text-white">
+          <div className="container-custom">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <span className="text-xs font-bold uppercase tracking-wider text-teal-400 bg-navy-800 px-3 py-1 rounded-full border border-navy-700">
+                Interactive Examination Interface
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white mt-3">
+                Explore the PWS Dashboard Ecosystem
+              </h2>
+              <p className="text-sm sm:text-base text-navy-300 mt-3">
+                Switch through the views below to experience the real-time exam management features built for administrators, faculty, and students.
+              </p>
+            </div>
+
+            <div className="max-w-5xl mx-auto">
+              <ProductMockup />
             </div>
           </div>
         </section>
