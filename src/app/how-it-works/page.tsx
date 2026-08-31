@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import { pwsWorkflow } from '@/data/content';
 import {
   Settings,
@@ -123,13 +124,12 @@ export default function HowItWorksPage() {
               </div>
             </div>
 
-            <div className="text-center mt-12">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-navy-900 hover:bg-navy-800 text-white font-bold rounded-xl shadow-lg transition-colors text-sm"
-              >
-                <span>Request a Walkthrough</span>
-                <ArrowRight className="w-4 h-4" />
+            <div className="text-center mt-12 flex justify-center">
+              <Link href="/contact">
+                <Button variant="teal" intent="medium">
+                  <span>Request a Walkthrough</span>
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
               </Link>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import { securityFeatures } from '@/data/content';
 import {
   KeyRound,
@@ -133,13 +134,12 @@ export default function SecurityPage() {
               </div>
             </div>
 
-            <div className="text-center mt-12">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-teal-500 hover:bg-teal-400 text-navy-950 font-bold rounded-xl shadow-lg transition-colors text-sm"
-              >
-                <span>Discuss Institutional Compliance & Security</span>
-                <ArrowRight className="w-4 h-4" />
+            <div className="text-center mt-12 flex justify-center">
+              <Link href="/contact">
+                <Button variant="teal" intent="medium">
+                  <span>Discuss Institutional Compliance & Security</span>
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
               </Link>
             </div>
           </div>

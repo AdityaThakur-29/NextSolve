@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import Link from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Target, Compass, Sparkles, Building2, CheckCircle2, ArrowRight } from 'lucide-react';
 import NextLink from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export const metadata = {
   title: 'About NextSolves — Modernizing Campus Operations',
@@ -166,13 +166,12 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="text-center mt-12">
-              <NextLink
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-navy-900 hover:bg-navy-800 text-white font-bold rounded-xl shadow-lg transition-colors text-sm cursor-pointer"
-              >
-                <span>Connect With NextSolves</span>
-                <ArrowRight className="w-4 h-4" />
+            <div className="text-center mt-12 flex justify-center">
+              <NextLink href="/contact">
+                <Button variant="teal" intent="medium">
+                  <span>Connect With NextSolves</span>
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
               </NextLink>
             </div>
           </div>

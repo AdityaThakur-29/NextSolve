@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { navigation } from '@/data/navigation';
+import { Button } from '@/components/ui/button';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -93,15 +94,14 @@ export default function Navbar() {
 
           {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-3">
-            <Link
-              href="/contact"
-              className={`hidden lg:inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200 cursor-pointer ${
-                isScrolled
-                  ? 'bg-navy-900 text-white hover:bg-navy-800'
-                  : 'bg-white text-navy-900 hover:bg-white/90'
-              }`}
-            >
-              Request a Demo
+            <Link href="/contact" className="hidden lg:inline-block">
+              <Button
+                variant={isScrolled ? "teal" : "cyan"}
+                intent="small"
+                className={isScrolled ? "bg-navy-950 text-white" : "bg-white text-navy-950 border-white"}
+              >
+                Request a Demo
+              </Button>
             </Link>
 
             <button

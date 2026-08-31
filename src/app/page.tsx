@@ -9,6 +9,7 @@ import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import FAQAccordion from '@/components/FAQAccordion';
 import ComparisonTable from '@/components/ComparisonTable';
 import ContactForm from '@/components/ContactForm';
+import { Button, Button2, Button3 } from '@/components/ui/button';
 import { AnimatedCounter, FadeIn, StaggerContainer, StaggerItem } from '@/components/Animations';
 import { features } from '@/data/features';
 import { stats, pillars, pwsWorkflow, traditionalWorkflow, securityFeatures } from '@/data/content';
@@ -120,18 +121,20 @@ export default function HomePage() {
 
               {/* Hero CTA buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <Link
-                  href="/contact"
-                  className="w-full sm:w-auto px-8 py-4 bg-teal-500 hover:bg-teal-400 text-navy-950 font-bold rounded-xl shadow-lg hover:shadow-teal-500/25 transition-all duration-200 flex items-center justify-center gap-2 text-base cursor-pointer"
-                >
-                  <span>Request an Institutional Demo</span>
-                  <ArrowRight className="w-5 h-5" />
+                <Link href="/contact" className="w-full sm:w-auto">
+                  <Button
+                    variant="teal"
+                    intent="medium"
+                    className="w-full sm:w-auto shadow-xl hover:shadow-teal-500/30"
+                  >
+                    <span>Request an Institutional Demo</span>
+                    <ArrowRight className="w-5 h-5 ml-1" />
+                  </Button>
                 </Link>
-                <Link
-                  href="/how-it-works"
-                  className="w-full sm:w-auto px-8 py-4 bg-navy-800/80 hover:bg-navy-700 text-white font-semibold rounded-xl border border-navy-700 transition-all duration-200 flex items-center justify-center gap-2 text-base cursor-pointer"
-                >
-                  <span>See How It Works</span>
+                <Link href="/how-it-works" className="w-full sm:w-auto">
+                  <Button3 className="w-full sm:w-auto bg-navy-800/90 text-white border-navy-700 hover:text-white">
+                    See How It Works
+                  </Button3>
                 </Link>
               </div>
 

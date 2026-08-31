@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import { features, featureCategories, FeatureCategory } from '@/data/features';
 import {
   FileText,
@@ -118,13 +119,14 @@ export default function FeaturesPage() {
             <p className="text-sm sm:text-base text-navy-300 mt-3 mb-8">
               Experience the live workflow with a personalized walkthrough for your department.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-teal-500 hover:bg-teal-400 text-navy-950 font-bold rounded-xl shadow-lg transition-colors text-base"
-            >
-              <span>Request a Demo</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+            <div className="flex justify-center">
+              <Link href="/contact">
+                <Button variant="teal" intent="medium">
+                  <span>Request a Demo</span>
+                  <ArrowRight className="w-5 h-5 ml-1" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

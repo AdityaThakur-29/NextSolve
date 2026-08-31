@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import DeploymentGallery from '@/components/DeploymentGallery';
 import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import { Building2, Award, CheckCircle2, Star, Users, ArrowRight } from 'lucide-react';
 
 export const metadata = {
@@ -105,13 +106,14 @@ export default function SuccessPage() {
             <p className="text-sm sm:text-base text-navy-300 mt-3 mb-8">
               Join leading institutions in transforming practical assessments into a frictionless digital workflow.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-teal-500 hover:bg-teal-400 text-navy-950 font-bold rounded-xl shadow-lg transition-colors text-base"
-            >
-              <span>Request an Institutional Demo</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+            <div className="flex justify-center">
+              <Link href="/contact">
+                <Button variant="teal" intent="medium">
+                  <span>Request an Institutional Demo</span>
+                  <ArrowRight className="w-5 h-5 ml-1" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

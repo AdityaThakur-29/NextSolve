@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Send, CheckCircle2, AlertCircle, Building2, User, Mail, Phone, Users, MessageSquare, Briefcase } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -202,20 +203,24 @@ export default function ContactForm() {
           </div>
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={status === 'submitting'}
-            className="w-full py-3.5 px-6 bg-gradient-to-r from-navy-900 to-navy-800 text-white font-bold text-sm rounded-xl hover:from-navy-800 hover:to-navy-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
-          >
-            {status === 'submitting' ? (
-              <span>Sending Inquiry...</span>
-            ) : (
-              <>
-                <span>Schedule an Institutional Demo</span>
-                <Send className="w-4 h-4" />
-              </>
-            )}
-          </button>
+          <div className="pt-2">
+            <Button
+              type="submit"
+              variant="teal"
+              intent="medium"
+              disabled={status === 'submitting'}
+              className="w-full justify-center text-sm sm:text-base py-3.5"
+            >
+              {status === 'submitting' ? (
+                <span>Sending Inquiry...</span>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <span>Schedule an Institutional Demo</span>
+                  <Send className="w-4 h-4 ml-1" />
+                </div>
+              )}
+            </Button>
+          </div>
 
           <p className="text-[11px] text-navy-400 text-center pt-2">
             Your inquiry is handled strictly under NextSolves privacy standards. No spam.

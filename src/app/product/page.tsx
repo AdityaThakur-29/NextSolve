@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import ProductMockup from '@/components/ProductMockup';
 import ComparisonTable from '@/components/ComparisonTable';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   CheckCircle2,
   ArrowRight,
@@ -200,13 +201,14 @@ export default function ProductPage() {
             <p className="text-sm sm:text-base text-navy-300 mt-3 mb-8">
               We provide tailored demonstrations for college leadership, department heads, and IT coordinators.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-teal-500 hover:bg-teal-400 text-navy-950 font-bold rounded-xl shadow-lg transition-colors text-base"
-            >
-              <span>Schedule a Demo for Your College</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+            <div className="flex justify-center">
+              <Link href="/contact">
+                <Button variant="teal" intent="medium">
+                  <span>Schedule a Demo for Your College</span>
+                  <ArrowRight className="w-5 h-5 ml-1" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </section>
       </main>
