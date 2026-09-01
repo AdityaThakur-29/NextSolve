@@ -127,7 +127,7 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col bg-white text-slate-900">
       <Navbar />
 
-      <main className="flex-1">
+      <main className="flex-1 relative z-10 bg-white shadow-xl shadow-slate-900/5">
         {/* ============================================================ */}
         {/* SECTION 1 — HERO (Open, spacious, unboxed) */}
         {/* ============================================================ */}
