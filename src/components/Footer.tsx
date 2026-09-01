@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block">
               <Image
-                src="/assets/logos/nextsolves-logo.png"
+                src="/assets/logos/nextsolves-brand-logo.png"
                 alt="NextSolves"
                 width={150}
                 height={42}

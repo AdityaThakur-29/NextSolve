@@ -42,7 +42,7 @@ export default function Navbar() {
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image
-            src="/assets/logos/nextsolves-logo.png"
+            src="/assets/logos/nextsolves-brand-logo.png"
             alt="NextSolves"
             width={140}
             height={40}
