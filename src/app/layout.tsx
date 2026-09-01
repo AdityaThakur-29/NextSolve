@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SplashScreen from "@/components/SplashScreen";
+import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -50,7 +51,7 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth">
       <body className="antialiased">
         <SplashScreen indicator="progress" reveal="curtain" duration={1.8} />
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

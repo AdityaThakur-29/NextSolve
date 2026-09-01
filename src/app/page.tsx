@@ -526,25 +526,9 @@ export default function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 11 — TESTIMONIALS CAROUSEL */}
+        {/* SECTION 11 — FACULTY ENDORSEMENTS (GSAP Horizontal Scroll Trigger) */}
         {/* ============================================================ */}
-        <section className="section-padding bg-white">
-          <div className="container-custom max-w-4xl">
-            <div className="max-w-2xl mx-auto text-center mb-12">
-              <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-                Faculty Endorsements
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
-                What Principals, HODs, and Teachers Say
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
-                Direct quotes from academic leadership actively conducting examinations on PWS.
-              </p>
-            </div>
-
-            <TestimonialsCarousel />
-          </div>
-        </section>
+        <TestimonialsCarousel />
 
         {/* ============================================================ */}
         {/* SECTION 12 — ROI CALCULATOR */}
