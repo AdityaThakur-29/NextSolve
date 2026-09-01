@@ -98,7 +98,7 @@ export default function AboutPage() {
                 <div className="text-center sm:text-left">
                   <span className="text-xs font-bold text-teal-600 uppercase tracking-wider">Founder</span>
                   <h3 className="text-xl font-bold text-navy-900 mt-1">Jagruti Morvekar</h3>
-                  <p className="text-xs text-navy-500 mt-1">NextSolves Co-Founder</p>
+                  <p className="text-xs text-navy-500 mt-1">NextSolves Founder</p>
                   <p className="text-xs text-navy-600 mt-4 leading-relaxed">
                     Passionate about architecting practical, zero-paper workflow platforms that solve real operational bottlenecks in Indian collegiate systems.
                   </p>
@@ -118,7 +118,7 @@ export default function AboutPage() {
                 <div className="text-center sm:text-left">
                   <span className="text-xs font-bold text-teal-600 uppercase tracking-wider">Founder</span>
                   <h3 className="text-xl font-bold text-navy-900 mt-1">Om Murkar</h3>
-                  <p className="text-xs text-navy-500 mt-1">NextSolves Co-Founder</p>
+                  <p className="text-xs text-navy-500 mt-1">NextSolves Founder</p>
                   <p className="text-xs text-navy-600 mt-4 leading-relaxed">
                     Dedicated to developing secure, locked exam environments and streamlined data pipelines that empower teachers and administrators.
                   </p>

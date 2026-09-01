@@ -14,9 +14,10 @@ import {
   ShieldAlert,
   ArrowRight,
   ShieldCheck,
+  type LucideIcon,
 } from 'lucide-react';
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   KeyRound,
   Database,
   HardDrive,

@@ -23,7 +23,6 @@ export const navigation: NavItem[] = [
       { label: 'For Students', href: '/for-students' },
     ],
   },
-  { label: 'How It Works', href: '/how-it-works' },
   { label: 'Success', href: '/success' },
   {
     label: 'Resources',
@@ -39,7 +38,6 @@ export const footerNavigation = {
   product: [
     { label: 'PWS Overview', href: '/product' },
     { label: 'Features', href: '/features' },
-    { label: 'How It Works', href: '/how-it-works' },
     { label: 'Security', href: '/security' },
   ],
   solutions: [

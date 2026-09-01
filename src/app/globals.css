@@ -1,94 +1,85 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* Brand Colors — derived from NextSolves logo */
-  --navy-950: #020617;
-  --navy-900: #0F172A;
-  --navy-800: #1E293B;
-  --navy-700: #334155;
-  --navy-600: #475569;
-  --navy-500: #64748B;
-  --navy-400: #94A3B8;
-  --navy-300: #CBD5E1;
-  --navy-200: #E2E8F0;
-  --navy-100: #F1F5F9;
-  --navy-50: #F8FAFC;
-
-  /* Accent — Teal/Turquoise from logo */
-  --teal-600: #0891B2;
-  --teal-500: #06B6D4;
-  --teal-400: #22D3EE;
-
-  /* CTA Blue */
-  --blue-700: #1D4ED8;
-  --blue-600: #2563EB;
-  --blue-500: #3B82F6;
-
-  /* Green — from logo arrow */
-  --green-600: #059669;
-  --green-500: #10B981;
-  --green-400: #34D399;
-
-  /* Semantic */
-  --background: #F8FAFC;
-  --foreground: #0F172A;
-  --muted: #64748B;
-  --border: #E2E8F0;
+  /* Clean Light SaaS Neutral & Semantic Palette */
+  --background: #FFFFFF;
+  --foreground: #0F172A; /* Slate 900 */
+  --muted: #64748B;      /* Slate 500 */
+  --muted-foreground: #475569; /* Slate 600 */
+  --border: #E2E8F0;     /* Slate 200 */
   --card: #FFFFFF;
-  --card-foreground: #1E293B;
+  --card-foreground: #0F172A;
+
+  /* Primary Accent: Electric Royal Blue */
+  --primary: #2563EB;
+  --primary-hover: #1D4ED8;
+  --primary-light: #EFF6FF;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary Accent */
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+
+  /* Verified Status Accent (Emerald) */
+  --verified: #10B981;
+  --verified-light: #ECFDF5;
+  --verified-border: #A7F3D0;
+
+  /* Slate Scale for Depth */
+  --slate-50: #F8FAFC;
+  --slate-100: #F1F5F9;
+  --slate-200: #E2E8F0;
+  --slate-300: #CBD5E1;
+  --slate-400: #94A3B8;
+  --slate-500: #64748B;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1E293B;
+  --slate-900: #0F172A;
+  --slate-950: #020617;
+
+  /* Typography Scale */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --measure-prose: 68ch;
 
   /* Spacing */
-  --section-padding: 5rem;
-  --container-max: 1280px;
+  --section-padding: 6rem;
+  --container-max: 1240px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  /* Subtle Crisp Shadows (no heavy blur) */
+  --shadow-subtle: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+  --shadow-card: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
+  --shadow-card-hover: 0 10px 15px -3px rgba(15, 23, 42, 0.06), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
+  --shadow-floating: 0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
 
-  /* Border Radius */
+  /* Border Radii */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-verified: var(--verified);
+  --color-verified-light: var(--verified-light);
 
-  --color-navy-950: var(--navy-950);
-  --color-navy-900: var(--navy-900);
-  --color-navy-800: var(--navy-800);
-  --color-navy-700: var(--navy-700);
-  --color-navy-600: var(--navy-600);
-  --color-navy-500: var(--navy-500);
-  --color-navy-400: var(--navy-400);
-  --color-navy-300: var(--navy-300);
-  --color-navy-200: var(--navy-200);
-  --color-navy-100: var(--navy-100);
-  --color-navy-50: var(--navy-50);
-
-  --color-teal-600: var(--teal-600);
-  --color-teal-500: var(--teal-500);
-  --color-teal-400: var(--teal-400);
-
-  --color-blue-700: var(--blue-700);
-  --color-blue-600: var(--blue-600);
-  --color-blue-500: var(--blue-500);
-
-  --color-green-600: var(--green-600);
-  --color-green-500: var(--green-500);
-  --color-green-400: var(--green-400);
-
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-sans);
 }
 
 /* Base Styles */
@@ -98,6 +89,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -113,7 +105,7 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -121,39 +113,52 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Focus Styles */
+/* Web Typography Standards */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--foreground);
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  color: var(--muted-foreground);
+  line-height: 1.65;
+}
+
+/* Accessible Focus States */
 :focus-visible {
-  outline: 2px solid var(--blue-600);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
-  border-radius: var(--radius-sm);
 }
 
 /* Selection */
 ::selection {
-  background: var(--teal-400);
-  color: var(--navy-950);
+  background: #DBEAFE;
+  color: #1E3A8A;
 }
 
-/* Scrollbar */
+/* Custom Minimal Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--navy-100);
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--navy-300);
-  border-radius: 4px;
+  background: #CBD5E1;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--navy-400);
+  background: #94A3B8;
 }
 
-/* Container Utility */
+/* Layout Utilities */
 .container-custom {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
 }
 
 @media (min-width: 640px) {
@@ -162,7 +167,6 @@ body {
   }
 }
 
-/* Section Utility */
 .section-padding {
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
@@ -170,31 +174,33 @@ body {
 
 @media (max-width: 768px) {
   :root {
-    --section-padding: 3rem;
+    --section-padding: 3.5rem;
   }
 }
 
-/* Gradient Backgrounds */
-.gradient-hero {
-  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 50%, #0C4A6E 100%);
+/* Reference 1: Concentric Aura Pattern for Hero Background */
+.hero-radial-pattern {
+  background-image: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.01) 45%, transparent 70%);
 }
 
-.gradient-teal {
-  background: linear-gradient(135deg, var(--teal-600) 0%, var(--teal-500) 100%);
+.hero-concentric-circles {
+  background-image: 
+    radial-gradient(circle at center, transparent 180px, rgba(226, 232, 240, 0.4) 181px, transparent 182px),
+    radial-gradient(circle at center, transparent 320px, rgba(226, 232, 240, 0.4) 321px, transparent 322px),
+    radial-gradient(circle at center, transparent 480px, rgba(226, 232, 240, 0.3) 481px, transparent 482px),
+    radial-gradient(circle at center, transparent 640px, rgba(226, 232, 240, 0.2) 641px, transparent 642px);
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, var(--teal-400) 0%, var(--green-400) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Subtle Interactive Card Hover */
+.saas-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 
-/* Card Hover Effect */
-.card-hover {
-  transition: transform 200ms ease, box-shadow 200ms ease;
-}
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+.saas-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
 }

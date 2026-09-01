@@ -9,50 +9,50 @@ const proofImages = [
   {
     id: 1,
     src: '/assets/proof/proof-1.jpeg',
-    title: 'Computer Lab Examination Session 1',
-    location: 'Thakur Polytechnic / Thakur Shyamnarayan Degree College, Kandivali (E), Mumbai',
-    date: 'March 2026',
-    description: 'Students actively taking digital practical examinations in computer labs using PWS locked environment.',
+    title: 'Digital Practical Lab Session 1',
+    location: 'Thakur Polytechnic / Thakur Shyamnarayan Degree College, Mumbai',
+    date: 'Academic Year 2025–26',
+    description: 'Students actively taking synchronized digital practical examinations in computer labs using PWS locked environment.',
   },
   {
     id: 2,
     src: '/assets/proof/proof-2.jpeg',
-    title: 'Zero-Paper Lab Deployment',
+    title: 'Zero-Paper Workstation Terminal',
     location: 'Thakur Polytechnic / Thakur Shyamnarayan Degree College, Mumbai',
-    date: 'March 2026',
-    description: 'Students entering code and output screenshots directly on lab workstations without paper answer sheets.',
+    date: 'Academic Year 2025–26',
+    description: 'Students entering code and output screenshots directly on lab workstations with zero physical answer sheets.',
   },
   {
     id: 3,
     src: '/assets/proof/proof-3.jpeg',
     title: 'Full Batch Practical Examination',
-    location: 'Computer Lab 102, Kandivali (E)',
-    date: 'March 2026',
-    description: 'Complete batch synchronized attendance and real-time faculty monitoring in progress.',
+    location: 'Computer Lab 102, Kandivali (E), Mumbai',
+    date: 'Academic Year 2025–26',
+    description: 'Complete batch synchronized attendance and real-time faculty monitoring across all terminals.',
   },
   {
     id: 4,
     src: '/assets/proof/proof-4.jpeg',
-    title: 'Live Lab Session & Monitoring',
+    title: 'Real-Time Lab Proctoring',
     location: 'Kandivali East Lab Facility',
-    date: 'March 2026',
-    description: 'Examiner supervising live workstation statuses and randomized slip assignments.',
+    date: 'Academic Year 2025–26',
+    description: 'Examiner supervising live workstation statuses and randomized question assignments from central console.',
   },
   {
     id: 5,
     src: '/assets/proof/proof-5.jpeg',
     title: 'Safe Exam Browser in Operation',
     location: 'Thakur Campus, Mumbai',
-    date: 'March 2026',
-    description: 'Workstations locked to prevent external tab switching and unauthorized tool access.',
+    date: 'Academic Year 2025–26',
+    description: 'Workstations locked to prevent external tab switching and unauthorized tool access during test.',
   },
   {
     id: 6,
     src: '/assets/proof/proof-6.jpeg',
-    title: 'Concurrent Student Assessments',
+    title: 'Concurrent Department Assessments',
     location: 'IT & CS Department Labs',
-    date: 'March 2026',
-    description: 'High-density student examination batch successfully conducted with zero paper printouts.',
+    date: 'Academic Year 2025–26',
+    description: 'High-density student examination batch successfully conducted with 100% paperless workflow.',
   },
 ];
 
@@ -76,43 +76,46 @@ export default function DeploymentGallery() {
         {proofImages.map((img, index) => (
           <motion.div
             key={img.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
+            transition={{ delay: index * 0.08 }}
             onClick={() => setSelectedImage(index)}
-            className="group bg-white rounded-2xl overflow-hidden border border-navy-100 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col"
+            className="group bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300 cursor-pointer flex flex-col"
           >
-            <div className="relative h-56 w-full overflow-hidden bg-navy-950">
+            <div className="relative h-56 w-full overflow-hidden bg-slate-100">
               <Image
                 src={img.src}
                 alt={img.title}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                className="object-cover group-hover:scale-103 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-              <div className="absolute top-3 right-3 bg-emerald-600/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm flex items-center gap-1">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-70 group-hover:opacity-85 transition-opacity"></div>
+              
+              <div className="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1">
                 <CheckCircle2 className="w-3 h-3" /> Verified Deployment
               </div>
+              
               <div className="absolute bottom-3 left-3 right-3 text-white">
-                <div className="flex items-center gap-1 text-[11px] text-teal-300 mb-0.5">
+                <div className="flex items-center gap-1 text-[11px] text-emerald-200 mb-0.5">
                   <MapPin className="w-3 h-3 shrink-0" />
                   <span className="truncate">Thakur College Campus, Mumbai</span>
                 </div>
                 <h4 className="font-bold text-sm text-white truncate">{img.title}</h4>
               </div>
             </div>
+            
             <div className="p-4 flex-1 flex flex-col justify-between bg-white">
-              <p className="text-xs text-navy-600 line-clamp-2 leading-relaxed">
+              <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
                 {img.description}
               </p>
-              <div className="mt-3 pt-3 border-t border-navy-100 flex items-center justify-between text-[11px] text-navy-400">
-                <span className="flex items-center gap-1">
-                  <Calendar className="w-3 h-3 text-teal-600" /> {img.date}
+              <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                <span className="flex items-center gap-1 text-slate-500 font-medium">
+                  <Calendar className="w-3 h-3 text-primary" /> {img.date}
                 </span>
-                <span className="text-teal-600 font-semibold group-hover:underline flex items-center gap-0.5">
-                  View Photo <ExternalLink className="w-3 h-3" />
+                <span className="text-primary font-semibold group-hover:underline flex items-center gap-0.5">
+                  Inspect Photo <ExternalLink className="w-3 h-3" />
                 </span>
               </div>
             </div>
@@ -127,22 +130,22 @@ export default function DeploymentGallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-navy-950/90 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
           >
             <div
-              className="relative max-w-4xl w-full bg-navy-900 rounded-2xl overflow-hidden border border-navy-700 shadow-2xl"
+              className="relative max-w-4xl w-full bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-navy-950/80 text-white hover:bg-navy-800 transition-colors"
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-900/70 text-white hover:bg-slate-900 transition-colors cursor-pointer"
                 aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="relative h-96 sm:h-[480px] w-full bg-black">
+              <div className="relative h-96 sm:h-[480px] w-full bg-slate-950">
                 <Image
                   src={proofImages[selectedImage].src}
                   alt={proofImages[selectedImage].title}
@@ -151,16 +154,16 @@ export default function DeploymentGallery() {
                 />
               </div>
 
-              <div className="p-6 bg-navy-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="p-6 bg-white border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <div className="flex items-center gap-2 text-xs text-teal-400 font-semibold mb-1">
+                  <div className="flex items-center gap-2 text-xs text-primary font-bold mb-1">
                     <MapPin className="w-3.5 h-3.5" />
                     <span>{proofImages[selectedImage].location}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-white">
+                  <h3 className="text-lg font-bold text-slate-900">
                     {proofImages[selectedImage].title}
                   </h3>
-                  <p className="text-xs text-navy-300 mt-1 max-w-xl">
+                  <p className="text-xs text-slate-600 mt-1 max-w-xl leading-relaxed">
                     {proofImages[selectedImage].description}
                   </p>
                 </div>
@@ -168,18 +171,18 @@ export default function DeploymentGallery() {
                 <div className="flex items-center gap-2 self-end sm:self-center">
                   <button
                     onClick={prevImage}
-                    className="p-2.5 rounded-xl bg-navy-800 hover:bg-navy-700 text-white transition-colors"
-                    aria-label="Previous"
+                    className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
+                    aria-label="Previous image"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
-                  <span className="text-xs text-navy-400 font-mono">
+                  <span className="text-xs text-slate-500 font-mono font-medium px-2">
                     {selectedImage + 1} / {proofImages.length}
                   </span>
                   <button
                     onClick={nextImage}
-                    className="p-2.5 rounded-xl bg-navy-800 hover:bg-navy-700 text-white transition-colors"
-                    aria-label="Next"
+                    className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
+                    aria-label="Next image"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>

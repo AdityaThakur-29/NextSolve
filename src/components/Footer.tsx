@@ -1,64 +1,69 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react';
 import { footerNavigation, contactInfo } from '@/data/navigation';
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-900 text-white">
-      <div className="container-custom section-padding">
+    <footer className="bg-slate-50 border-t border-slate-200/80 text-slate-700">
+      <div className="container-custom py-16 sm:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="inline-block mb-4">
+          {/* Brand Column */}
+          <div className="lg:col-span-2 space-y-4">
+            <Link href="/" className="inline-block">
               <Image
                 src="/assets/logos/nextsolves-logo.png"
                 alt="NextSolves"
-                width={160}
-                height={48}
-                className="h-10 w-auto brightness-0 invert"
+                width={150}
+                height={42}
+                className="h-9 w-auto object-contain"
               />
             </Link>
-            <p className="text-navy-300 text-sm leading-relaxed mb-6 max-w-xs">
-              Next-Level Software Solutions. Transforming campus operations with
-              digital examination and workflow automation.
+            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
+              The operating system for the future campus. Transforming paper-based examination chaos into an automated, zero-paper workflow.
             </p>
-            <div className="space-y-3">
+
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Verified Deployment • Thakur College</span>
+            </div>
+
+            <div className="pt-2 space-y-2.5 text-xs sm:text-sm">
               <a
                 href={`mailto:${contactInfo.email}`}
-                className="flex items-center gap-2.5 text-sm text-navy-300 hover:text-teal-400 transition-colors"
+                className="flex items-center gap-2.5 text-slate-600 hover:text-primary transition-colors"
               >
-                <Mail className="w-4 h-4 shrink-0" />
+                <Mail className="w-4 h-4 text-slate-400 shrink-0" />
                 {contactInfo.email}
               </a>
               {contactInfo.phone.map((p) => (
                 <a
                   key={p}
                   href={`tel:${p.replace(/\s/g, '')}`}
-                  className="flex items-center gap-2.5 text-sm text-navy-300 hover:text-teal-400 transition-colors"
+                  className="flex items-center gap-2.5 text-slate-600 hover:text-primary transition-colors"
                 >
-                  <Phone className="w-4 h-4 shrink-0" />
+                  <Phone className="w-4 h-4 text-slate-400 shrink-0" />
                   {p}
                 </a>
               ))}
-              <div className="flex items-start gap-2.5 text-sm text-navy-300">
-                <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5 text-slate-500">
+                <MapPin className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
                 {contactInfo.address}
               </div>
             </div>
           </div>
 
-          {/* Product */}
+          {/* Product Links */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+            <h4 className="text-xs font-bold text-slate-900 mb-4 uppercase tracking-wider">
               Product
-            </h3>
+            </h4>
             <ul className="space-y-2.5">
               {footerNavigation.product.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-navy-300 hover:text-teal-400 transition-colors"
+                    className="text-xs sm:text-sm text-slate-600 hover:text-primary transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -67,17 +72,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Solutions */}
+          {/* Solutions Links */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+            <h4 className="text-xs font-bold text-slate-900 mb-4 uppercase tracking-wider">
               Solutions
-            </h3>
+            </h4>
             <ul className="space-y-2.5">
               {footerNavigation.solutions.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-navy-300 hover:text-teal-400 transition-colors"
+                    className="text-xs sm:text-sm text-slate-600 hover:text-primary transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -86,17 +91,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Company Links */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+            <h4 className="text-xs font-bold text-slate-900 mb-4 uppercase tracking-wider">
               Company
-            </h3>
+            </h4>
             <ul className="space-y-2.5">
               {footerNavigation.company.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-navy-300 hover:text-teal-400 transition-colors"
+                    className="text-xs sm:text-sm text-slate-600 hover:text-primary transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -105,32 +110,33 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Resources + Legal */}
+          {/* Resources & Legal */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+            <h4 className="text-xs font-bold text-slate-900 mb-4 uppercase tracking-wider">
               Resources
-            </h3>
+            </h4>
             <ul className="space-y-2.5 mb-6">
               {footerNavigation.resources.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-navy-300 hover:text-teal-400 transition-colors"
+                    className="text-xs sm:text-sm text-slate-600 hover:text-primary transition-colors"
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-            <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+
+            <h4 className="text-xs font-bold text-slate-900 mb-4 uppercase tracking-wider">
               Legal
-            </h3>
+            </h4>
             <ul className="space-y-2.5">
               {footerNavigation.legal.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-navy-300 hover:text-teal-400 transition-colors"
+                    className="text-xs sm:text-sm text-slate-600 hover:text-primary transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -141,13 +147,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-navy-700 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-navy-400">
-            © {new Date().getFullYear()} NextSolves. All rights reserved.
-          </p>
-          <p className="text-sm text-navy-500">
-            Built with purpose for modern education.
-          </p>
+        <div className="mt-14 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <p>© {new Date().getFullYear()} NextSolves. All rights reserved.</p>
+          <p>Autonomous Examination & Institutional Workflow Infrastructure.</p>
         </div>
       </div>
     </footer>
