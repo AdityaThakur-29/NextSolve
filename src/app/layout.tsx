@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SplashScreen from "@/components/SplashScreen";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -46,8 +47,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body className="antialiased">
+        <SplashScreen indicator="progress" reveal="curtain" duration={1.8} />
         {children}
       </body>
     </html>
