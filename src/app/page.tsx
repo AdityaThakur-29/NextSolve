@@ -8,6 +8,7 @@ import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import FAQAccordion from '@/components/FAQAccordion';
 import ComparisonTable from '@/components/ComparisonTable';
 import ContactForm from '@/components/ContactForm';
+import DigitalPipelineBeam from '@/components/DigitalPipelineBeam';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AnimatedCounter } from '@/components/Animations';
@@ -274,11 +275,11 @@ export default function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 4 — PWS DIGITAL PIPELINE (Connected Timeline — No cards) */}
+        {/* SECTION 4 — PWS DIGITAL PIPELINE (Animated Integration Beam) */}
         {/* ============================================================ */}
-        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70">
+        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70 overflow-hidden">
           <div className="container-custom max-w-5xl">
-            <div className="max-w-2xl mx-auto text-center mb-14">
+            <div className="max-w-2xl mx-auto text-center mb-12">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 The PWS Solution
               </span>
@@ -286,29 +287,11 @@ export default function HomePage() {
                 The Streamlined Digital Pipeline
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-2">
-                An automated, synchronized digital journey replacing physical paper shuffling.
+                An automated, synchronized digital journey replacing physical paper shuffling. Hover over any stage to inspect operational details.
               </p>
             </div>
 
-            {/* Sleek Connected Horizontal Pipeline without 7 boxed cards */}
-            <div className="relative">
-              {/* Subtle connecting track on desktop */}
-              <div className="hidden lg:block absolute top-4 left-6 right-6 h-0.5 bg-slate-200 z-0"></div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-6 relative z-10">
-                {pipelineSteps.map((step, idx) => (
-                  <div key={idx} className="flex flex-col items-start lg:items-center text-left lg:text-center space-y-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shadow-sm ring-4 ring-slate-50 shrink-0">
-                      {step.num}
-                    </div>
-                    <h4 className="text-xs font-bold text-slate-900 mt-1">{step.title}</h4>
-                    <p className="text-[11px] text-slate-500 leading-relaxed max-w-[130px]">
-                      {step.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <DigitalPipelineBeam />
           </div>
         </section>
 
@@ -507,9 +490,9 @@ export default function HomePage() {
         {/* ============================================================ */}
         {/* SECTION 10 — DEPLOYMENT GALLERY (Field Proof Media) */}
         {/* ============================================================ */}
-        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70">
-          <div className="container-custom max-w-5xl">
-            <div className="max-w-2xl mx-auto text-center mb-12">
+        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70 overflow-hidden">
+          <div className="container-custom max-w-5xl mb-10">
+            <div className="max-w-2xl mx-auto text-center">
               <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
                 Verified Field Deployment
               </span>
@@ -520,7 +503,9 @@ export default function HomePage() {
                 Over 2,500+ students examined with 100% paperless delivery in active computer labs.
               </p>
             </div>
+          </div>
 
+          <div className="w-full">
             <DeploymentGallery />
           </div>
         </section>

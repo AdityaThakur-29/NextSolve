@@ -80,6 +80,44 @@
   --color-verified-light: var(--verified-light);
 
   --font-sans: var(--font-sans);
+
+  --animate-marquee: marquee var(--duration, 40s) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration, 40s) linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap, 1rem)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap, 1rem)));
+  }
+}
+
+/* Fallback class support */
+.animate-marquee {
+  animation: marquee var(--duration, 40s) infinite linear;
+}
+
+.animate-marquee-reverse {
+  animation: marquee var(--duration, 40s) infinite linear reverse;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
+}
+
+.animate-marquee-vertical-reverse {
+  animation: marquee-vertical var(--duration, 40s) linear infinite reverse;
 }
 
 /* Base Styles */

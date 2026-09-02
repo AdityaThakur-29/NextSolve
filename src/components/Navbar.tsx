@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { navigation } from '@/data/navigation';
 import { Button } from '@/components/ui/button';
+import { ProgressiveBlur } from '@/components/ui/progressive-blur';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,7 +31,24 @@ export default function Navbar() {
   }, [isMobileOpen]);
 
   return (
-    <header className="fixed top-3 sm:top-4 inset-x-0 mx-auto max-w-5xl z-50 px-3 sm:px-4 transition-all duration-300">
+    <>
+      {/* Top of viewport Progressive Blur for smooth Apple-style scroll fading */}
+      <ProgressiveBlur
+        position="top"
+        height="96px"
+        className="fixed top-0 inset-x-0 z-40 pointer-events-none bg-gradient-to-b from-white/70 via-white/25 to-transparent"
+        blurLevels={[0.5, 1, 2, 4, 8, 12, 16, 24]}
+      />
+
+      {/* Bottom of viewport Progressive Blur for smooth scroll fading */}
+      <ProgressiveBlur
+        position="bottom"
+        height="96px"
+        className="fixed bottom-0 inset-x-0 z-40 pointer-events-none bg-gradient-to-t from-white/70 via-white/25 to-transparent"
+        blurLevels={[0.5, 1, 2, 4, 8, 12, 16, 24]}
+      />
+
+      <header className="fixed top-3 sm:top-4 inset-x-0 mx-auto max-w-5xl z-50 px-3 sm:px-4 transition-all duration-300">
       <nav
         className={`flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 rounded-full border transition-all duration-300 ${
           isScrolled
@@ -167,7 +185,7 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="pt-3">
+          <div className="pt-3 relative z-20">
             <Link
               href="/contact"
               onClick={() => setIsMobileOpen(false)}
@@ -177,8 +195,14 @@ export default function Navbar() {
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+          <ProgressiveBlur
+            position="bottom"
+            height="40px"
+            className="pointer-events-none rounded-b-3xl"
+          />
         </div>
       )}
     </header>
+    </>
   );
 }

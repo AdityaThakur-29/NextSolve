@@ -3,11 +3,12 @@ import Image from 'next/image';
 import { Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react';
 import { footerNavigation, contactInfo } from '@/data/navigation';
 import { FooterStickyReveal } from '@/components/ui/footer-sticky-reveal';
+import { ProgressiveBlur } from '@/components/ui/progressive-blur';
 
 export default function Footer() {
   return (
-    <FooterStickyReveal>
-      <footer className="bg-slate-50 border-t border-slate-200/80 text-slate-700">
+    <FooterStickyReveal className="mt-24 sm:mt-28">
+      <footer className="relative bg-slate-50 border-t border-slate-200/80 text-slate-700 overflow-hidden">
       <div className="container-custom py-16 sm:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8">
           {/* Brand Column */}
@@ -154,6 +155,13 @@ export default function Footer() {
           <p>Autonomous Examination & Institutional Workflow Infrastructure.</p>
         </div>
       </div>
+
+      <ProgressiveBlur
+        position="bottom"
+        height="64px"
+        className="pointer-events-none bg-gradient-to-t from-slate-100/60 to-transparent"
+        blurLevels={[0.5, 1, 2, 4, 8, 16]}
+      />
       </footer>
     </FooterStickyReveal>
   );

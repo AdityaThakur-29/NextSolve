@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { MapPin, Calendar, CheckCircle2, ChevronLeft, ChevronRight, X, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Marquee } from '@/components/ui/marquee';
+import { ProgressiveBlur } from '@/components/ui/progressive-blur';
 
 const proofImages = [
   {
@@ -56,6 +58,61 @@ const proofImages = [
   },
 ];
 
+const firstRow = [proofImages[0], proofImages[1], proofImages[2]];
+const secondRow = [proofImages[3], proofImages[4], proofImages[5]];
+
+function ProofCard({ img, onClick }: { img: (typeof proofImages)[0]; onClick: () => void }) {
+  return (
+    <div
+      onClick={onClick}
+      className="group relative w-[310px] sm:w-[370px] shrink-0 bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300 cursor-pointer flex flex-col mx-2"
+    >
+      <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100">
+        <Image
+          src={img.src}
+          alt={img.title}
+          fill
+          sizes="(max-width: 768px) 310px, 370px"
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <ProgressiveBlur
+          position="bottom"
+          height="60%"
+          className="pointer-events-none z-10"
+          blurLevels={[0.5, 1, 2, 4, 8, 16]}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/30 to-transparent opacity-75 group-hover:opacity-90 transition-opacity z-10 pointer-events-none"></div>
+
+        <div className="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1 z-20">
+          <CheckCircle2 className="w-3 h-3" /> Verified Deployment
+        </div>
+
+        <div className="absolute bottom-3 left-3 right-3 text-white z-20">
+          <div className="flex items-center gap-1 text-[11px] text-emerald-200 mb-0.5">
+            <MapPin className="w-3 h-3 shrink-0" />
+            <span className="truncate">Thakur College Campus, Mumbai</span>
+          </div>
+          <h4 className="font-bold text-sm text-white truncate">{img.title}</h4>
+        </div>
+      </div>
+
+      <div className="p-4 flex-1 flex flex-col justify-between bg-white">
+        <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+          {img.description}
+        </p>
+        <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+          <span className="flex items-center gap-1 text-slate-500 font-medium">
+            <Calendar className="w-3 h-3 text-primary" /> {img.date}
+          </span>
+          <span className="text-primary font-semibold group-hover:underline flex items-center gap-0.5">
+            Inspect Photo <ExternalLink className="w-3 h-3" />
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function DeploymentGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
@@ -70,58 +127,28 @@ export default function DeploymentGallery() {
   };
 
   return (
-    <div>
-      {/* Proof Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {proofImages.map((img, index) => (
-          <motion.div
+    <div className="relative w-full flex flex-col gap-4 overflow-hidden py-4">
+      {/* Row 1: Moving to the Left */}
+      <Marquee direction="left" pauseOnHover className="[--duration:35s]">
+        {firstRow.map((img) => (
+          <ProofCard
             key={img.id}
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.08 }}
-            onClick={() => setSelectedImage(index)}
-            className="group bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300 cursor-pointer flex flex-col"
-          >
-            <div className="relative h-56 w-full overflow-hidden bg-slate-100">
-              <Image
-                src={img.src}
-                alt={img.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover group-hover:scale-103 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-70 group-hover:opacity-85 transition-opacity"></div>
-              
-              <div className="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3" /> Verified Deployment
-              </div>
-              
-              <div className="absolute bottom-3 left-3 right-3 text-white">
-                <div className="flex items-center gap-1 text-[11px] text-emerald-200 mb-0.5">
-                  <MapPin className="w-3 h-3 shrink-0" />
-                  <span className="truncate">Thakur College Campus, Mumbai</span>
-                </div>
-                <h4 className="font-bold text-sm text-white truncate">{img.title}</h4>
-              </div>
-            </div>
-            
-            <div className="p-4 flex-1 flex flex-col justify-between bg-white">
-              <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                {img.description}
-              </p>
-              <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-                <span className="flex items-center gap-1 text-slate-500 font-medium">
-                  <Calendar className="w-3 h-3 text-primary" /> {img.date}
-                </span>
-                <span className="text-primary font-semibold group-hover:underline flex items-center gap-0.5">
-                  Inspect Photo <ExternalLink className="w-3 h-3" />
-                </span>
-              </div>
-            </div>
-          </motion.div>
+            img={img}
+            onClick={() => setSelectedImage(proofImages.findIndex((p) => p.id === img.id))}
+          />
         ))}
-      </div>
+      </Marquee>
+
+      {/* Row 2: Moving to the Right */}
+      <Marquee direction="right" pauseOnHover className="[--duration:35s]">
+        {secondRow.map((img) => (
+          <ProofCard
+            key={img.id}
+            img={img}
+            onClick={() => setSelectedImage(proofImages.findIndex((p) => p.id === img.id))}
+          />
+        ))}
+      </Marquee>
 
       {/* Lightbox Modal */}
       <AnimatePresence>
@@ -151,6 +178,12 @@ export default function DeploymentGallery() {
                   alt={proofImages[selectedImage].title}
                   fill
                   className="object-contain"
+                />
+                <ProgressiveBlur
+                  position="bottom"
+                  height="30%"
+                  className="pointer-events-none z-10"
+                  blurLevels={[0.5, 1, 2, 4, 8, 16]}
                 />
               </div>
 

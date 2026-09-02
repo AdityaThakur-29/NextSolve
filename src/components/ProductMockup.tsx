@@ -15,6 +15,7 @@ import {
   CheckSquare,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ProgressiveBlur } from '@/components/ui/progressive-blur';
 
 export interface TabItem {
   id: string;
@@ -231,6 +232,63 @@ export default function ProductMockup() {
                     ))}
                   </div>
                 </div>
+
+                {/* Live Real-Time Terminal Audit Stream with Magic UI Progressive Blur */}
+                <div className="relative rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs font-mono overflow-hidden">
+                  <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-slate-800 text-[11px]">
+                    <span className="flex items-center gap-2 text-emerald-400 font-semibold">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      Real-Time Lab Terminal Heartbeats (Active Audit Stream)
+                    </span>
+                    <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded border border-slate-700/60 font-sans">
+                      Scroll to view all
+                    </span>
+                  </div>
+                  
+                  {/* Scrollable Event Log */}
+                  <div className="max-h-36 overflow-y-auto space-y-2 pr-1 text-slate-300 text-[11px] leading-relaxed">
+                    <div className="flex items-center justify-between">
+                      <span className="text-emerald-400">[10:42:18] WS-01 (Roll 101)</span>
+                      <span className="text-slate-400">Question Slip #04 verified • Monotonic heartbeat 18ms</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-blue-400">[10:42:15] WS-02 (Roll 102)</span>
+                      <span className="text-slate-400">Code snapshot compiled • Python 3.11 AVL Tree</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-amber-400">[10:42:11] WS-03 (Roll 103)</span>
+                      <span className="text-slate-400">Submission approval requested • Waiting for faculty signoff</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-emerald-400">[10:42:09] WS-04 (Roll 104)</span>
+                      <span className="text-slate-400">Safe Exam Browser locked • Clipboard access blocked</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-indigo-400">[10:42:04] WS-05 (Roll 105)</span>
+                      <span className="text-slate-400">Marks ledger recorded • 28/30 certified to DB</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-purple-400">[10:41:58] WS-06 (Roll 106)</span>
+                      <span className="text-slate-400">Output screenshot avl_result.png attached & hashed</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-500">[10:41:50] SERVER AUDIT</span>
+                      <span className="text-slate-400">Batch 102 cryptographic signature generated</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-emerald-400">[10:41:45] WS-07 (Roll 107)</span>
+                      <span className="text-slate-400">Student terminal session verified • 0 tab switches</span>
+                    </div>
+                  </div>
+
+                  {/* Magic UI Progressive Blur fading the scrollable logs at bottom */}
+                  <ProgressiveBlur
+                    position="bottom"
+                    height="50px"
+                    className="pointer-events-none"
+                    blurLevels={[0.5, 1, 2, 4, 8, 16, 24, 32]}
+                  />
+                </div>
               </motion.div>
             )}
 
@@ -278,14 +336,35 @@ export default function ProductMockup() {
                       </span>
                       <span className="font-mono text-primary font-semibold">Python 3.11</span>
                     </div>
-                    <div className="mt-2 bg-slate-900 p-3.5 rounded-lg text-emerald-300 font-mono text-[11px] leading-relaxed overflow-x-auto">
-                      <p><span className="text-purple-300">class</span> <span className="text-amber-200">AVLNode</span>:</p>
-                      <p className="pl-4"><span className="text-purple-300">def</span> <span className="text-blue-300">__init__</span>(self, key):</p>
-                      <p className="pl-8">self.key = key</p>
-                      <p className="pl-8">self.left = None</p>
-                      <p className="pl-8">self.right = None</p>
-                      <p className="pl-8">self.height = 1</p>
-                      <p className="mt-1 text-slate-400 font-sans text-[10px]"># Auto-saved to institutional database 4s ago</p>
+                    <div className="relative mt-2 bg-slate-950 p-3.5 rounded-lg text-emerald-300 font-mono text-[11px] leading-relaxed overflow-hidden">
+                      <div className="max-h-44 overflow-y-auto space-y-0.5 pr-2">
+                        <p><span className="text-purple-400 font-bold">class</span> <span className="text-amber-300">AVLNode</span>:</p>
+                        <p className="pl-4"><span className="text-purple-400 font-bold">def</span> <span className="text-blue-300">__init__</span>(self, key):</p>
+                        <p className="pl-8 text-slate-300">self.key = key</p>
+                        <p className="pl-8 text-slate-300">self.left = None</p>
+                        <p className="pl-8 text-slate-300">self.right = None</p>
+                        <p className="pl-8 text-slate-300">self.height = 1</p>
+                        <p className="mt-2"><span className="text-purple-400 font-bold">def</span> <span className="text-blue-300">get_height</span>(node):</p>
+                        <p className="pl-4 text-slate-300">if not node: return 0</p>
+                        <p className="pl-4 text-slate-300">return node.height</p>
+                        <p className="mt-2"><span className="text-purple-400 font-bold">def</span> <span className="text-blue-300">get_balance</span>(node):</p>
+                        <p className="pl-4 text-slate-300">if not node: return 0</p>
+                        <p className="pl-4 text-slate-300">return get_height(node.left) - get_height(node.right)</p>
+                        <p className="mt-2"><span className="text-purple-400 font-bold">def</span> <span className="text-blue-300">rotate_right</span>(y):</p>
+                        <p className="pl-4 text-slate-300">x = y.left; T2 = x.right</p>
+                        <p className="pl-4 text-slate-300">x.right = y; y.left = T2</p>
+                        <p className="pl-4 text-slate-300">y.height = 1 + max(get_height(y.left), get_height(y.right))</p>
+                        <p className="pl-4 text-slate-300">x.height = 1 + max(get_height(x.left), get_height(x.right))</p>
+                        <p className="pl-4 text-slate-300">return x</p>
+                        <p className="mt-2 text-slate-400 font-sans text-[10px]"># Auto-saved to institutional encrypted storage (Hash: SHA256:8f4c...)</p>
+                      </div>
+
+                      <ProgressiveBlur
+                        position="bottom"
+                        height="50px"
+                        className="pointer-events-none"
+                        blurLevels={[0.5, 1, 2, 4, 8, 16, 24, 32]}
+                      />
                     </div>
                   </div>
                   <div className="p-2.5 rounded-lg border border-slate-200 bg-slate-50 flex items-center justify-between text-[11px]">
