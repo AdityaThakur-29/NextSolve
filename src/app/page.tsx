@@ -136,13 +136,13 @@ export default function HomePage() {
           <div className="container-custom relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-5">
               {/* Centered Pill Announcement */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-primary text-xs font-semibold shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                <span>Verified Campus Deployment • Thakur College, Mumbai</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-primary text-[11px] sm:text-xs font-semibold shadow-2xs max-w-full">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0"></span>
+                <span className="truncate">Verified Campus Deployment • Thakur College, Mumbai</span>
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
+              <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.15] sm:leading-[1.1]">
                 The Operating System for the{' '}
                 <span className="text-primary underline decoration-blue-200 decoration-wavy decoration-from-font">
                   Future Campus.
@@ -253,12 +253,15 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Light, open grid: icon + 3-word heading + 1 supporting line (NO BOXES) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Light, responsive grid: card containers on mobile for visual separation */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
               {traditionalSteps.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
-                  <div key={index} className="space-y-2">
+                  <div
+                    key={index}
+                    className="p-4 sm:p-0 rounded-2xl sm:rounded-none bg-rose-50/40 sm:bg-transparent border border-rose-100/80 sm:border-0 space-y-2"
+                  >
                     <div className="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
                       <IconComponent className="w-4 h-4" />
                     </div>
@@ -287,7 +290,9 @@ export default function HomePage() {
                 The Streamlined Digital Pipeline
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-2">
-                An automated, synchronized digital journey replacing physical paper shuffling. Hover over any stage to inspect operational details.
+                An automated, synchronized digital journey replacing physical paper shuffling.{' '}
+                <span className="hidden sm:inline">Hover over or click any stage</span>
+                <span className="sm:hidden">Tap any stage below</span> to inspect operational details.
               </p>
             </div>
 
@@ -347,13 +352,13 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Standardized single card grid: exactly 1 icon, 3-5 word heading, max 12 word line */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {/* Standardized card grid: responsive padding and gap */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
               {coreFeatures.map((feat, idx) => {
                 const IconComponent = feat.icon;
                 return (
                   <Card key={idx} className="bg-white border-slate-200/90 hover:border-primary/40 hover:shadow-sm transition-all">
-                    <CardHeader className="p-5 space-y-3">
+                    <CardHeader className="p-4 sm:p-5 space-y-2.5 sm:space-y-3">
                       <div className="w-9 h-9 rounded-xl bg-blue-50 text-primary flex items-center justify-center">
                         <IconComponent className="w-4 h-4" />
                       </div>
@@ -398,12 +403,15 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Open 3-Column role showcase with single value statement and link (NO BULLET LISTS) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+            {/* 3-Column role showcase with cards on mobile */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-100">
               {stakeholderRoles.map((role, idx) => {
                 const IconComponent = role.icon;
                 return (
-                  <div key={idx} className="space-y-3 pt-6 md:pt-0 md:px-6 first:pl-0 last:pr-0">
+                  <div
+                    key={idx}
+                    className="p-4 sm:p-0 rounded-2xl sm:rounded-none bg-slate-50/60 sm:bg-transparent border border-slate-200/80 sm:border-0 space-y-3 pt-4 sm:pt-6 md:pt-0 md:px-6 first:pl-0 last:pr-0"
+                  >
                     <div className="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center">
                       <IconComponent className="w-5 h-5" />
                     </div>
@@ -438,12 +446,15 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Open borderless 3x2 grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Security items with subtle cards on mobile */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
               {securityItems.map((sec, idx) => {
                 const IconComponent = sec.icon;
                 return (
-                  <div key={idx} className="space-y-2">
+                  <div
+                    key={idx}
+                    className="p-4 sm:p-0 rounded-2xl sm:rounded-none bg-white sm:bg-transparent border border-slate-200/90 sm:border-0 shadow-2xs sm:shadow-none space-y-2"
+                  >
                     <div className="w-9 h-9 rounded-xl bg-blue-50 text-primary flex items-center justify-center">
                       <IconComponent className="w-4 h-4" />
                     </div>

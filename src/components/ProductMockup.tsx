@@ -75,9 +75,15 @@ export default function ProductMockup() {
   const currentTab = tabs.find((t) => t.id === activeTab) || tabs[0];
 
   return (
-    <div className="rounded-3xl border border-slate-200/90 bg-white p-4 sm:p-6 lg:p-7 shadow-xl">
+    <div className="rounded-3xl border border-slate-200/90 bg-white p-3.5 sm:p-6 lg:p-7 shadow-xl">
+      {/* Mobile Swipe Cue */}
+      <div className="sm:hidden flex items-center justify-between text-[11px] font-semibold text-slate-500 mb-2 px-1">
+        <span>Tap tabs to switch view</span>
+        <span className="text-primary flex items-center gap-1 font-bold">Swipe tabs →</span>
+      </div>
+
       {/* Top Segmented Tab Navigation */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-5 border-b border-slate-100 scrollbar-none">
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-2.5 mb-4 border-b border-slate-100 scrollbar-none">
         {tabs.map((tab) => {
           const isActive = tab.id === activeTab;
           return (
@@ -236,12 +242,13 @@ export default function ProductMockup() {
                 {/* Live Real-Time Terminal Audit Stream with Magic UI Progressive Blur */}
                 <div className="relative rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs font-mono overflow-hidden">
                   <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-slate-800 text-[11px]">
-                    <span className="flex items-center gap-2 text-emerald-400 font-semibold">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                      Real-Time Lab Terminal Heartbeats (Active Audit Stream)
+                    <span className="flex items-center gap-2 text-emerald-400 font-semibold truncate">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                      <span className="truncate">Terminal Heartbeat Audit Stream</span>
                     </span>
-                    <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded border border-slate-700/60 font-sans">
-                      Scroll to view all
+                    <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded border border-slate-700/60 font-sans shrink-0">
+                      <span className="hidden sm:inline">Scroll to view all</span>
+                      <span className="sm:hidden">Swipe to view log</span>
                     </span>
                   </div>
                   
@@ -458,12 +465,12 @@ export default function ProductMockup() {
                     <span className="text-[10px] text-slate-500">Per Academic Year</span>
                   </div>
                 </div>
-                <div className="p-4 rounded-xl border border-slate-200 bg-white flex items-center justify-between">
+                <div className="p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
                     <span className="font-bold text-slate-900">Permanent University Mark Sheet Export</span>
                     <p className="text-slate-500 text-[11px] mt-0.5">Generate certified Excel & PDF result ledgers in seconds.</p>
                   </div>
-                  <button className="px-4 py-2 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors flex items-center gap-1.5">
+                  <button className="w-full sm:w-auto px-4 py-2 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors flex items-center justify-center gap-1.5 shrink-0">
                     <FileSpreadsheet className="w-4 h-4 text-emerald-400" /> Export All (Excel)
                   </button>
                 </div>

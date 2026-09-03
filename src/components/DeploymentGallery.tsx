@@ -65,7 +65,7 @@ function ProofCard({ img, onClick }: { img: (typeof proofImages)[0]; onClick: ()
   return (
     <div
       onClick={onClick}
-      className="group relative w-[310px] sm:w-[370px] shrink-0 bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300 cursor-pointer flex flex-col mx-2"
+      className="group relative w-[270px] sm:w-[370px] shrink-0 bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300 cursor-pointer flex flex-col mx-2"
     >
       <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100">
         <Image
@@ -105,7 +105,9 @@ function ProofCard({ img, onClick }: { img: (typeof proofImages)[0]; onClick: ()
             <Calendar className="w-3 h-3 text-primary" /> {img.date}
           </span>
           <span className="text-primary font-semibold group-hover:underline flex items-center gap-0.5">
-            Inspect Photo <ExternalLink className="w-3 h-3" />
+            <span className="hidden sm:inline">Inspect Photo</span>
+            <span className="sm:hidden">Tap Photo</span>
+            <ExternalLink className="w-3 h-3 ml-0.5" />
           </span>
         </div>
       </div>
@@ -160,19 +162,27 @@ export default function DeploymentGallery() {
             className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
           >
-            <div
-              className="relative max-w-4xl w-full bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xl"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{
+                duration: 0.2,
+                ease: [0.23, 1, 0.32, 1],
+              }}
+              style={{ transformOrigin: 'center' }}
+              className="relative max-w-4xl w-full bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xl max-h-[92vh] flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-900/70 text-white hover:bg-slate-900 transition-colors cursor-pointer"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-2 rounded-full bg-slate-900/70 text-white hover:bg-slate-900 transition-colors cursor-pointer"
                 aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="relative h-96 sm:h-[480px] w-full bg-slate-950">
+              <div className="relative h-60 sm:h-[480px] w-full bg-slate-950 shrink-0">
                 <Image
                   src={proofImages[selectedImage].src}
                   alt={proofImages[selectedImage].title}
@@ -221,7 +231,7 @@ export default function DeploymentGallery() {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -12,9 +12,21 @@ export function FooterStickyReveal({ children, className = '' }: FooterStickyRev
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!contentRef.current) return;
+    const checkMobile = () => {
+      // On mobile screens (< 768px), disable fixed sticky reveal to prevent viewport height clipping
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile || !contentRef.current) return;
 
     const measureHeight = () => {
       if (contentRef.current) {
@@ -31,17 +43,22 @@ export function FooterStickyReveal({ children, className = '' }: FooterStickyRev
       resizeObserver.disconnect();
       window.removeEventListener('resize', measureHeight);
     };
-  }, []);
+  }, [isMobile]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end end'],
   });
 
-  // Smooth Motion: slight Y translation, subtle scale, and gentle fade in as footer is uncovered
+  // Desktop Motion: slight Y translation, subtle scale, and gentle fade in
   const y = useTransform(scrollYProgress, [0, 1], [-80, 0]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.4, 0.85, 1]);
   const scale = useTransform(scrollYProgress, [0, 1], [0.97, 1]);
+
+  // Mobile fallback: render in natural document flow so it is 100% scrollable without viewport bounds clipping
+  if (isMobile) {
+    return <div className={`relative w-full ${className}`}>{children}</div>;
+  }
 
   return (
     <div

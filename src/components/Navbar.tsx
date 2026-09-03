@@ -7,6 +7,7 @@ import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { navigation } from '@/data/navigation';
 import { Button } from '@/components/ui/button';
 import { ProgressiveBlur } from '@/components/ui/progressive-blur';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -137,9 +138,19 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Drawer Overlay */}
-      {isMobileOpen && (
-        <div className="md:hidden fixed inset-x-3 top-20 bg-white/95 backdrop-blur-xl rounded-3xl border border-slate-200 p-5 shadow-2xl z-40 max-h-[80vh] overflow-y-auto">
-          <div className="space-y-1">
+      <AnimatePresence>
+        {isMobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.98 }}
+            transition={{
+              duration: 0.22,
+              ease: [0.32, 0.72, 0, 1],
+            }}
+            className="md:hidden fixed inset-x-3 top-20 bg-white/95 backdrop-blur-xl rounded-3xl border border-slate-200 p-5 shadow-2xl z-40 max-h-[80vh] overflow-y-auto"
+          >
+            <div className="space-y-1">
             {navigation.map((item) => (
               <div key={item.label} className="border-b border-slate-100 last:border-0 pb-2 mb-2">
                 {item.children ? (
@@ -195,13 +206,14 @@ export default function Navbar() {
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <ProgressiveBlur
-            position="bottom"
-            height="40px"
-            className="pointer-events-none rounded-b-3xl"
-          />
-        </div>
-      )}
+            <ProgressiveBlur
+              position="bottom"
+              height="40px"
+              className="pointer-events-none rounded-b-3xl"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
     </>
   );

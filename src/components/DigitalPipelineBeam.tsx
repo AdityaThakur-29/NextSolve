@@ -243,10 +243,16 @@ export default function DigitalPipelineBeam() {
 
   return (
     <div className="w-full flex flex-col items-center">
-      {/* Interactive Beam Integration Diagram (Inspired by Reference Images 2 & 3) */}
+      {/* Mobile Touch Prompt */}
+      <div className="flex sm:hidden items-center justify-center gap-1.5 text-[11px] font-semibold text-primary mb-3 bg-blue-50/80 px-3 py-1 rounded-full border border-blue-200/60 shadow-2xs">
+        <Zap className="w-3.5 h-3.5 shrink-0 text-primary" />
+        <span>Tap any node or swipe stages below to inspect</span>
+      </div>
+
+      {/* Interactive Beam Integration Diagram */}
       <div
         ref={containerRef}
-        className="relative w-full max-w-5xl h-[520px] sm:h-[580px] bg-white rounded-3xl border border-slate-200/90 shadow-sm p-4 sm:p-8 flex items-center justify-between overflow-hidden select-none"
+        className="relative w-full max-w-5xl h-[420px] sm:h-[580px] bg-white rounded-3xl border border-slate-200/90 shadow-sm p-3 sm:p-8 flex items-center justify-between overflow-hidden select-none"
       >
         {/* Subtle Ambient Background Mesh Grid */}
         <div
@@ -265,7 +271,7 @@ export default function DigitalPipelineBeam() {
         {/* ============================================================ */}
         {/* LEFT COLUMN — Pre-Exam Ingestion (Nodes 01, 02, 03) */}
         {/* ============================================================ */}
-        <div className="flex flex-col justify-between h-full py-4 sm:py-6 z-20 w-32 sm:w-52">
+        <div className="flex flex-col justify-between h-full py-2 sm:py-6 z-20 w-14 sm:w-52">
           {/* Node 01: Exam Setup */}
           <NodeItem
             ref={node1Ref}
@@ -320,7 +326,7 @@ export default function DigitalPipelineBeam() {
             <div className="absolute -inset-1.5 rounded-full bg-primary/15 animate-pulse pointer-events-none" />
 
             {/* Central Node Circle with PWS Logo */}
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white border-2 border-primary/80 shadow-xl flex items-center justify-center p-3 sm:p-4 transition-all">
+            <div className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-white border-2 border-primary/80 shadow-xl flex items-center justify-center p-2.5 sm:p-4 transition-all">
               <Image
                 src="/assets/logos/dp_logo_pws.png"
                 alt="PWS Core"
@@ -356,7 +362,7 @@ export default function DigitalPipelineBeam() {
         {/* ============================================================ */}
         {/* RIGHT COLUMN — Execution & Compliance (Nodes 04, 05, 06, 07) */}
         {/* ============================================================ */}
-        <div className="flex flex-col justify-between h-full py-2 sm:py-3 z-20 w-32 sm:w-52">
+        <div className="flex flex-col justify-between h-full py-2 sm:py-3 z-20 w-14 sm:w-52">
           {/* Node 04: Terminal Lockdown */}
           <NodeItem
             ref={node4Ref}
@@ -507,55 +513,79 @@ export default function DigitalPipelineBeam() {
         />
       </div>
 
+      {/* Mobile Stage Selector Strip */}
+      <div className="sm:hidden w-full max-w-5xl mt-4 flex items-center gap-1.5 overflow-x-auto py-1 scrollbar-none">
+        {pipelineStages.map((s) => {
+          const isSel = s.id === activeStage.id;
+          return (
+            <button
+              key={s.id}
+              onClick={() => {
+                setActiveStageId(s.id);
+                setHoveredStageId(null);
+              }}
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 transition-all flex items-center gap-1.5 cursor-pointer ${
+                isSel
+                  ? 'bg-primary text-white shadow-xs font-bold'
+                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              <span className="font-mono text-[10px] opacity-80">{s.num}</span>
+              <span>{s.title}</span>
+            </button>
+          );
+        })}
+      </div>
+
       {/* ============================================================ */}
-      {/* DYNAMIC PIPELINE INSPECTOR CARD (Shows Details on Hover / Click) */}
+      {/* DYNAMIC PIPELINE INSPECTOR CARD (Shows Details on Tap / Hover) */}
       {/* ============================================================ */}
-      <div className="w-full max-w-5xl mt-6">
-        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-6 transition-all duration-300">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
-            <div className="flex items-center gap-3">
+      <div className="w-full max-w-5xl mt-3 sm:mt-6">
+        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-4 sm:p-6 transition-all duration-300">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 sm:pb-4 border-b border-slate-100">
+            <div className="flex items-center gap-3 min-w-0">
               <span
-                className={`w-9 h-9 rounded-xl flex items-center justify-center font-extrabold text-sm border ${activeStage.badgeBg} ${activeStage.badgeBorder}`}
+                className={`w-9 h-9 rounded-xl flex items-center justify-center font-extrabold text-sm border shrink-0 ${activeStage.badgeBg} ${activeStage.badgeBorder}`}
               >
                 {activeStage.num}
               </span>
-              <div>
+              <div className="min-w-0">
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                     {activeStage.category}
                   </span>
                   <span className="text-slate-300">•</span>
-                  <span className="text-[11px] font-semibold text-primary">
+                  <span className="text-[11px] font-semibold text-primary truncate">
                     {activeStage.role}
                   </span>
                 </div>
-                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
+                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5 truncate">
                   {activeStage.title}
                 </h3>
               </div>
             </div>
 
             {/* Stepper Controls & Metric Badge */}
-            <div className="flex items-center gap-3 self-end sm:self-center">
-              <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
-                <Zap className="w-3.5 h-3.5 text-emerald-600" />
-                {activeStage.metric}
+            <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3 w-full sm:w-auto">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] sm:text-xs font-semibold truncate max-w-[200px] sm:max-w-none">
+                <Zap className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span className="truncate">{activeStage.metric}</span>
               </span>
 
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 shrink-0">
                 <button
                   onClick={handlePrev}
-                  className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors"
+                  className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors cursor-pointer"
                   aria-label="Previous step"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
-                <span className="text-xs font-mono font-semibold text-slate-500 px-2">
+                <span className="text-xs font-mono font-semibold text-slate-500 px-1.5 sm:px-2">
                   {activeStage.num === 'PWS' ? 'CORE' : `${activeStage.num} / 07`}
                 </span>
                 <button
                   onClick={handleNext}
-                  className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors"
+                  className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors cursor-pointer"
                   aria-label="Next step"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -616,21 +646,21 @@ const NodeItem = React.forwardRef<
     >
       {/* Circle Icon Container */}
       <div
-        className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border-2 shadow-md flex items-center justify-center transition-all duration-300 shrink-0 ${
+        className={`relative w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white border-2 shadow-md flex items-center justify-center transition-all duration-300 shrink-0 ${
           isHovered || isActive
             ? 'border-primary shadow-lg scale-110 ring-4 ring-primary/10'
             : 'border-slate-200 hover:border-slate-300 hover:scale-105'
         }`}
       >
         <IconComponent
-          className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors ${
+          className={`w-4 h-4 sm:w-6 sm:h-6 transition-colors ${
             isHovered || isActive ? stage.accentColor : 'text-slate-600'
           }`}
         />
 
         {/* Step Number Tag Pill */}
         <span
-          className={`absolute -top-1.5 -right-1 text-[9px] font-mono font-extrabold px-1.5 py-0.2 rounded-full border shadow-2xs ${stage.badgeBg} ${stage.badgeBorder}`}
+          className={`absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1 text-[8px] sm:text-[9px] font-mono font-extrabold px-1 sm:px-1.5 py-0.2 rounded-full border shadow-2xs ${stage.badgeBg} ${stage.badgeBorder}`}
         >
           {stage.num}
         </span>
@@ -650,7 +680,7 @@ const NodeItem = React.forwardRef<
         </p>
       </div>
 
-      {/* Floating Hover Details Card (Appears directly next to the node on hover) */}
+      {/* Floating Hover Details Card (Appears on desktop hover only; on mobile the inspector card below displays it) */}
       <AnimatePresence>
         {isHovered && (
           <motion.div
@@ -658,7 +688,7 @@ const NodeItem = React.forwardRef<
             animate={{ opacity: 1, scale: 1, x: 0 }}
             exit={{ opacity: 0, scale: 0.92 }}
             transition={{ duration: 0.15 }}
-            className={`absolute z-50 w-64 sm:w-72 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-2xl pointer-events-none text-left ${
+            className={`hidden sm:block absolute z-50 w-64 sm:w-72 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-2xl pointer-events-none text-left ${
               alignRight
                 ? 'right-full mr-3 top-1/2 -translate-y-1/2'
                 : 'left-full ml-3 top-1/2 -translate-y-1/2'

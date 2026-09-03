@@ -135,10 +135,10 @@ html {
     scroll-behavior: auto;
   }
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  }
+  .motion-reduce-subtle {
+    transform: none !important;
   }
 }
 
@@ -196,10 +196,16 @@ p {
 .container-custom {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 1rem;
 }
 
 @media (min-width: 640px) {
+  .container-custom {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
   .container-custom {
     padding: 0 2rem;
   }
@@ -212,7 +218,7 @@ p {
 
 @media (max-width: 768px) {
   :root {
-    --section-padding: 3.5rem;
+    --section-padding: 3rem;
   }
 }
 

@@ -1,68 +1,72 @@
 'use client';
 
-import { useState } from 'react';
+import React from 'react';
 import { faqItems, FAQItem } from '@/data/faq';
-import { ChevronDown, HelpCircle } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Skiper103, Skiper103Item } from '@/components/ui/skiper103';
+import {
+  Layers,
+  GraduationCap,
+  Terminal,
+  Shuffle,
+  CheckCircle2,
+  Cpu,
+  UserCheck,
+  ShieldCheck,
+  Eye,
+  Copy,
+  BarChart3,
+  Leaf,
+  Rocket,
+  RotateCcw,
+  Calendar,
+  HelpCircle,
+} from 'lucide-react';
 
-export default function FAQAccordion({ limit }: { limit?: number }) {
-  const [openId, setOpenId] = useState<string | null>(faqItems[0]?.id || null);
-  const items = limit ? faqItems.slice(0, limit) : faqItems;
+// Map contextual icons for each FAQ item for a rich aesthetic
+const iconMap: Record<string, React.ReactNode> = {
+  'what-is-pws': <Layers className="w-4 h-4" />,
+  'who-is-pws-for': <GraduationCap className="w-4 h-4" />,
+  'how-practical-exam-works': <Terminal className="w-4 h-4" />,
+  'how-question-slips-assigned': <Shuffle className="w-4 h-4" />,
+  'mcq-support': <CheckCircle2 className="w-4 h-4" />,
+  'automated-evaluation': <Cpu className="w-4 h-4" />,
+  'attendance': <UserCheck className="w-4 h-4" />,
+  'exam-integrity': <ShieldCheck className="w-4 h-4 text-emerald-600" />,
+  'live-monitoring': <Eye className="w-4 h-4" />,
+  'reusable-templates': <Copy className="w-4 h-4" />,
+  'admin-results': <BarChart3 className="w-4 h-4" />,
+  'paperless': <Leaf className="w-4 h-4 text-emerald-600" />,
+  'implementation': <Rocket className="w-4 h-4 text-blue-600" />,
+  'exam-resumption': <RotateCcw className="w-4 h-4 text-amber-600" />,
+  'request-demo': <Calendar className="w-4 h-4 text-primary" />,
+};
 
-  const toggle = (id: string) => {
-    setOpenId(openId === id ? null : id);
-  };
+interface FAQAccordionProps {
+  limit?: number;
+  className?: string;
+  allowMultiple?: boolean;
+}
+
+export default function FAQAccordion({
+  limit,
+  className,
+  allowMultiple = false,
+}: FAQAccordionProps) {
+  const sourceItems = limit ? faqItems.slice(0, limit) : faqItems;
+
+  const formattedItems: Skiper103Item[] = sourceItems.map((item: FAQItem) => ({
+    id: item.id,
+    title: item.question,
+    content: item.answer,
+    icon: iconMap[item.id] || <HelpCircle className="w-4 h-4" />,
+  }));
 
   return (
-    <div className="space-y-3 max-w-3xl mx-auto">
-      {items.map((item: FAQItem) => {
-        const isOpen = openId === item.id;
-        return (
-          <div
-            key={item.id}
-            className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-              isOpen
-                ? 'bg-white border-primary/40 shadow-sm ring-1 ring-primary/10'
-                : 'bg-white border-slate-200/90 hover:border-slate-300 shadow-2xs'
-            }`}
-          >
-            <button
-              onClick={() => toggle(item.id)}
-              className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
-              aria-expanded={isOpen}
-            >
-              <span className="font-bold text-sm sm:text-base text-slate-900 flex items-center gap-3">
-                <HelpCircle
-                  className={`w-4 h-4 shrink-0 transition-colors ${
-                    isOpen ? 'text-primary' : 'text-slate-400'
-                  }`}
-                />
-                {item.question}
-              </span>
-              <ChevronDown
-                className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-                  isOpen ? 'rotate-180 text-primary' : ''
-                }`}
-              />
-            </button>
-
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.2, ease: 'easeInOut' }}
-                >
-                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 font-normal pl-12">
-                    {item.answer}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        );
-      })}
-    </div>
+    <Skiper103
+      items={formattedItems}
+      defaultOpenId={formattedItems[0]?.id || null}
+      className={className}
+      allowMultiple={allowMultiple}
+    />
   );
 }

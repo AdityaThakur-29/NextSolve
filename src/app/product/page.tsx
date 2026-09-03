@@ -53,7 +53,8 @@ export default function ProductPage() {
                 Explore the Complete Interface Ecosystem
               </h2>
               <p className="text-sm sm:text-base text-navy-600 mt-2">
-                Click through the live views below to understand how administrators, faculty, and students interact during an examination cycle.
+                <span className="hidden sm:inline">Click or navigate through the live views below</span>
+                <span className="sm:hidden">Tap tabs below to explore live views</span> to understand how administrators, faculty, and students interact during an examination cycle.
               </p>
             </div>
 

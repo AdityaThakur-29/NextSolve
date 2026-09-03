@@ -90,13 +90,19 @@ export default function TestimonialsCarousel() {
               <span>Thakur Shyamnarayan Degree College, Mumbai</span>
             </div>
 
+            {/* Mobile Swipe Indicator */}
+            <div className="md:hidden flex items-center gap-1.5 text-xs text-primary font-semibold pt-1">
+              <ArrowRight className="w-3.5 h-3.5 animate-pulse" />
+              <span>Swipe horizontally to read reviews</span>
+            </div>
+
             {/* Desktop Scrub Progress Pill */}
             <div className="hidden md:flex items-center gap-2.5 text-xs text-slate-500 font-mono">
               <span>Scroll to navigate</span>
               <div className="w-24 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                 <div
                   ref={progressRef}
-                  className="h-full bg-primary rounded-full transition-all duration-75"
+                  className="h-full bg-primary rounded-full transition-[width] duration-75 ease-linear"
                   style={{ width: `${Math.max(10, scrollPercentage)}%` }}
                 />
               </div>
@@ -112,10 +118,10 @@ export default function TestimonialsCarousel() {
       <div className="w-full relative z-10 overflow-x-auto md:overflow-visible scrollbar-none pb-4">
         <div
           ref={trackRef}
-          className="flex gap-6 px-4 sm:px-8 md:pl-12 md:pr-24 items-stretch will-change-transform"
+          className="flex gap-4 sm:gap-6 px-4 sm:px-8 md:pl-12 md:pr-24 items-stretch will-change-transform"
         >
           {/* Intro Metric Card */}
-          <div className="shrink-0 w-[280px] sm:w-[320px] bg-slate-50/80 rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-2xs flex flex-col justify-between">
+          <div className="shrink-0 w-[260px] sm:w-[320px] bg-slate-50/80 rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-2xs flex flex-col justify-between">
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-primary flex items-center justify-center">
                 <Star className="w-5 h-5 fill-primary text-primary" />
@@ -135,7 +141,7 @@ export default function TestimonialsCarousel() {
           {testimonials.map((item, index) => (
             <div
               key={item.id}
-              className="shrink-0 w-[330px] sm:w-[390px] lg:w-[420px] bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-primary/40 transition-all flex flex-col justify-between"
+              className="shrink-0 w-[280px] sm:w-[390px] lg:w-[420px] bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-primary/40 transition-all flex flex-col justify-between"
             >
               <div>
                 {/* Quote Header & Rating */}
