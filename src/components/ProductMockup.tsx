@@ -29,8 +29,8 @@ export interface TabItem {
 export const tabs: TabItem[] = [
   {
     id: 'live-monitoring',
-    label: 'Live Lab Surveillance',
-    role: 'Faculty / Examiner View',
+    label: 'Live Exam Dashboard',
+    role: 'Faculty / Examiner Console',
     badge: 'Live',
     title: 'Real-Time Lab Workstation Surveillance & Heartbeats',
     description:
@@ -38,35 +38,27 @@ export const tabs: TabItem[] = [
   },
   {
     id: 'student-practical',
-    label: 'Student Code IDE',
-    role: 'Student Examination Interface',
-    title: 'Locked Digital Practical Environment — 100% Zero Paper',
+    label: 'Student Dashboard',
+    role: 'Student Portal',
+    title: 'Student Portal — 100% Zero Paper Locked Assessment',
     description:
-      'Students receive a randomized digital question slip, write and run code directly in the locked environment, and attach output screenshots for grading.',
-  },
-  {
-    id: 'evaluation',
-    label: 'Side-by-Side Grading',
-    role: 'Teacher Evaluation Console',
-    title: 'Frictionless Code & Output Evaluation Console',
-    description:
-      'Review question slips, student code, and execution outputs side-by-side. Grade with one click and export university-compliant mark sheets.',
+      'Students receive a randomized digital question slip, write and run code directly in the Student Portal, and attach output screenshots for grading.',
   },
   {
     id: 'admin',
-    label: 'Admin Overview',
+    label: 'Admin Dashboard',
     role: 'College Administrator',
     title: 'Centralized College Exam Governance & Instant Analytics',
     description:
       'Monitor all department examinations in real time, oversee active batches across campus labs, and export permanent encrypted digital records.',
   },
   {
-    id: 'mcq-exam',
-    label: 'Automated MCQ Engine',
-    role: 'Internal Assessment',
-    title: 'Automated Evaluation & Auto-Scoring Engine',
+    id: 'evaluation',
+    label: 'Automated Grading',
+    role: 'Teacher Evaluation Console',
+    title: 'Automated Grading & Evaluation Console',
     description:
-      'Randomized question selection to match marks criteria. Automatic grading with auto-generated analytics upon student submission.',
+      'Review question slips, student code, and execution outputs side-by-side. Grade with one click and export university-compliant mark sheets.',
   },
 ];
 
@@ -299,7 +291,7 @@ export default function ProductMockup() {
               </motion.div>
             )}
 
-            {/* VIEW 2: Student Practical Code IDE */}
+            {/* VIEW 2: Student Dashboard (Student Portal) */}
             {activeTab === 'student-practical' && (
               <motion.div
                 key="student-practical"
@@ -327,7 +319,7 @@ export default function ProductMockup() {
                     </div>
                   </div>
                   <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px]">
-                    <span className="text-slate-500">Locked Exam Window</span>
+                    <span className="text-slate-500">Student Portal (Locked Mode)</span>
                     <span className="text-emerald-700 font-semibold flex items-center gap-1">
                       <Lock className="w-3 h-3" /> Clipboard & DevTools Blocked
                     </span>
@@ -339,7 +331,7 @@ export default function ProductMockup() {
                   <div>
                     <div className="flex items-center justify-between text-[11px] pb-2 border-b border-slate-100">
                       <span className="font-bold text-slate-800 flex items-center gap-1.5">
-                        <Terminal className="w-3.5 h-3.5 text-primary" /> Solution IDE (Direct Entry)
+                        <Terminal className="w-3.5 h-3.5 text-primary" /> Student Portal Editor
                       </span>
                       <span className="font-mono text-primary font-semibold">Python 3.11</span>
                     </div>

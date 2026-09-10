@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { footerNavigation, contactInfo } from '@/data/navigation';
 import { FooterStickyReveal } from '@/components/ui/footer-sticky-reveal';
 import { ProgressiveBlur } from '@/components/ui/progressive-blur';
@@ -27,10 +27,7 @@ export default function Footer() {
                 The operating system for the future campus. Transforming paper-based examination chaos into an automated, zero-paper workflow.
               </p>
 
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 text-xs font-semibold max-w-full">
-                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                <span className="truncate">Verified Deployment • Thakur College</span>
-              </div>
+
 
               <div className="pt-2 space-y-2 text-xs sm:text-sm">
                 <a
@@ -66,7 +63,7 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2 sm:space-y-2.5">
                 {footerNavigation.product.map((item) => (
-                  <li key={item.href}>
+                  <li key={`${item.label}-${item.href}`}>
                     <Link
                       href={item.href}
                       className="inline-block py-0.5 text-xs sm:text-sm text-slate-600 hover:text-primary transition-colors"
@@ -85,7 +82,7 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2 sm:space-y-2.5">
                 {footerNavigation.solutions.map((item) => (
-                  <li key={item.href}>
+                  <li key={`${item.label}-${item.href}`}>
                     <Link
                       href={item.href}
                       className="inline-block py-0.5 text-xs sm:text-sm text-slate-600 hover:text-primary transition-colors"
@@ -104,7 +101,7 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2 sm:space-y-2.5">
                 {footerNavigation.company.map((item) => (
-                  <li key={item.href}>
+                  <li key={`${item.label}-${item.href}`}>
                     <Link
                       href={item.href}
                       className="inline-block py-0.5 text-xs sm:text-sm text-slate-600 hover:text-primary transition-colors"
@@ -139,7 +136,7 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2 sm:space-y-2.5">
                 {footerNavigation.legal.map((item) => (
-                  <li key={item.href}>
+                  <li key={`${item.label}-${item.href}`}>
                     <Link
                       href={item.href}
                       className="inline-block py-0.5 text-xs sm:text-sm text-slate-600 hover:text-primary transition-colors"

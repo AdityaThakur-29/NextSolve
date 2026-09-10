@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { MapPin, Calendar, CheckCircle2, ChevronLeft, ChevronRight, X, ExternalLink } from 'lucide-react';
+import { MapPin, Calendar, ChevronLeft, ChevronRight, X, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Marquee } from '@/components/ui/marquee';
 import { ProgressiveBlur } from '@/components/ui/progressive-blur';
@@ -83,9 +83,6 @@ function ProofCard({ img, onClick }: { img: (typeof proofImages)[0]; onClick: ()
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/30 to-transparent opacity-75 group-hover:opacity-90 transition-opacity z-10 pointer-events-none"></div>
 
-        <div className="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1 z-20">
-          <CheckCircle2 className="w-3 h-3" /> Verified Deployment
-        </div>
 
         <div className="absolute bottom-3 left-3 right-3 text-white z-20">
           <div className="flex items-center gap-1 text-[11px] text-emerald-200 mb-0.5">

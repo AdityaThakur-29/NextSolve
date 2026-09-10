@@ -42,7 +42,7 @@ NextSolve/
 │   │   └── assets/
 │   │       ├── logos/       # NextSolves and PWS brand logos
 │   │       ├── team/        # Founder portraits (Jagruti & Om)
-│   │       └── proof/       # GPS-verified lab deployment photos
+│   │       └── proof/       # Lab implementation photos
 │   ├── src/
 │   │   ├── app/             # 16 App Router pages & routes
 │   │   ├── components/      # UI components, ROI calculator, Mockups
@@ -92,7 +92,7 @@ npm start
 
 ---
 
-## 🎓 Verified Deployment
+## 🎓 Institutional Implementation
 
 - **Institution**: Thakur Shyamnarayan Degree College, Mumbai
 - **Students Served**: 2,500+

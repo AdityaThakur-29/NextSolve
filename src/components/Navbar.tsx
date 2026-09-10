@@ -115,7 +115,7 @@ export default function Navbar() {
 
         {/* Right CTA + Mobile Menu Button */}
         <div className="flex items-center gap-2">
-          <Link href="/contact" className="hidden sm:inline-flex">
+          <Link href="/#contact" className="hidden sm:inline-flex">
             <Button
               variant="default"
               size="sm"
@@ -198,7 +198,7 @@ export default function Navbar() {
 
           <div className="pt-3 relative z-20">
             <Link
-              href="/contact"
+              href="/#contact"
               onClick={() => setIsMobileOpen(false)}
               className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-primary text-white text-sm font-semibold shadow hover:bg-primary-hover transition-colors"
             >

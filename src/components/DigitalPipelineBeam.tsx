@@ -7,16 +7,12 @@ import {
   CalendarCheck,
   Sparkles,
   Shuffle,
-  ShieldCheck,
+  Lock,
   Activity,
   Code2,
   FileSpreadsheet,
   CheckCircle2,
-  ChevronRight,
-  ChevronLeft,
-  Lock,
   Cpu,
-  ArrowRight,
   Zap,
 } from 'lucide-react';
 import { AnimatedBeam } from '@/components/ui/animated-beam';
@@ -227,19 +223,6 @@ export default function DigitalPipelineBeam() {
     pipelineStages.find((s) => s.id === (hoveredStageId || activeStageId)) ||
     pipelineStages[0];
 
-  const handlePrev = () => {
-    const currentIndex = pipelineStages.findIndex((s) => s.id === activeStage.id);
-    const prevIndex = (currentIndex - 1 + pipelineStages.length) % pipelineStages.length;
-    setActiveStageId(pipelineStages[prevIndex].id);
-    setHoveredStageId(null);
-  };
-
-  const handleNext = () => {
-    const currentIndex = pipelineStages.findIndex((s) => s.id === activeStage.id);
-    const nextIndex = (currentIndex + 1) % pipelineStages.length;
-    setActiveStageId(pipelineStages[nextIndex].id);
-    setHoveredStageId(null);
-  };
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -252,7 +235,7 @@ export default function DigitalPipelineBeam() {
       {/* Interactive Beam Integration Diagram */}
       <div
         ref={containerRef}
-        className="relative w-full max-w-5xl h-[420px] sm:h-[580px] bg-white rounded-3xl border border-slate-200/90 shadow-sm p-3 sm:p-8 flex items-center justify-between overflow-hidden select-none"
+        className="relative w-full max-w-5xl lg:max-w-6xl h-[440px] sm:h-[560px] bg-white rounded-3xl border border-slate-200/90 shadow-sm p-3 sm:p-8 flex items-center justify-between overflow-hidden select-none"
       >
         {/* Subtle Ambient Background Mesh Grid */}
         <div
@@ -271,7 +254,7 @@ export default function DigitalPipelineBeam() {
         {/* ============================================================ */}
         {/* LEFT COLUMN — Pre-Exam Ingestion (Nodes 01, 02, 03) */}
         {/* ============================================================ */}
-        <div className="flex flex-col justify-between h-full py-2 sm:py-6 z-20 w-14 sm:w-52">
+        <div className="flex flex-col justify-between h-full py-2 sm:py-6 z-20 w-14 sm:w-48">
           {/* Node 01: Exam Setup */}
           <NodeItem
             ref={node1Ref}
@@ -307,7 +290,7 @@ export default function DigitalPipelineBeam() {
         </div>
 
         {/* ============================================================ */}
-        {/* CENTER HUB — PWS Core Autonomous Engine */}
+        {/* CENTER HUB — PWS Core Autonomous Engine (Light Theme) */}
         {/* ============================================================ */}
         <div className="z-20 flex items-center justify-center self-center my-auto">
           <div
@@ -315,18 +298,24 @@ export default function DigitalPipelineBeam() {
             onMouseEnter={() => setHoveredStageId('core')}
             onMouseLeave={() => setHoveredStageId(null)}
             onClick={() => setActiveStageId('core')}
-            className={`group relative flex items-center justify-center cursor-pointer transition-all duration-300 ${
+            className={`group relative flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ${
               hoveredStageId === 'core' || activeStage.id === 'core'
-                ? 'scale-110'
-                : 'hover:scale-105'
+                ? 'scale-105'
+                : 'hover:scale-102'
             }`}
           >
-            {/* Pulsing Aura Rings */}
-            <div className="absolute -inset-3 rounded-full bg-primary/10 animate-ping opacity-30 pointer-events-none" />
-            <div className="absolute -inset-1.5 rounded-full bg-primary/15 animate-pulse pointer-events-none" />
+            {/* Ambient Pulsing Aura Rings (Light Theme) */}
+            <div className="absolute -inset-6 rounded-full bg-blue-500/10 animate-ping opacity-25 pointer-events-none" />
+            <div className="absolute -inset-3 rounded-full bg-primary/10 animate-pulse pointer-events-none" />
+
+            {/* Rotating Subtle Orbital Precision Track */}
+            <div
+              className="absolute -inset-4 sm:-inset-5 rounded-full border border-dashed border-blue-300/70 animate-spin pointer-events-none"
+              style={{ animationDuration: '24s' }}
+            />
 
             {/* Central Node Circle with PWS Logo */}
-            <div className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-white border-2 border-primary/80 shadow-xl flex items-center justify-center p-2.5 sm:p-4 transition-all">
+            <div className="relative w-18 h-18 sm:w-24 sm:h-24 rounded-full bg-white border-2 border-primary/80 shadow-xl shadow-blue-500/10 flex items-center justify-center p-3 sm:p-4 transition-all">
               <Image
                 src="/assets/logos/dp_logo_pws.png"
                 alt="PWS Core"
@@ -337,22 +326,36 @@ export default function DigitalPipelineBeam() {
               />
             </div>
 
-            {/* Hover Floating Glass Tooltip */}
+
+            {/* Rebuilt Hover Tooltip (100% Light Theme — Replaces Dark Box) */}
             <AnimatePresence>
               {hoveredStageId === 'core' && (
                 <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 8, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.96 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute bottom-full mb-3 w-64 p-3 bg-slate-950/95 text-white rounded-xl shadow-2xl border border-slate-800 text-xs text-center z-50 pointer-events-none backdrop-blur-md"
+                  className="absolute bottom-full mb-3.5 w-72 sm:w-80 p-4 bg-white/95 backdrop-blur-md text-slate-800 rounded-2xl shadow-xl shadow-blue-900/10 border border-blue-100 text-xs text-center z-50 pointer-events-none"
                 >
-                  <span className="text-primary font-bold text-[11px] block">
-                    PWS Autonomous Engine
-                  </span>
-                  <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
-                    Centrally coordinates paperless ingestion, Safe Exam Browser locks, live heartbeats, and mark ledgers.
+                  <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-primary bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200 mb-1.5">
+                    <Cpu className="w-3.5 h-3.5 text-primary" />
+                    <span>PWS Autonomous Engine</span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-slate-600 mt-1 leading-relaxed font-normal">
+                    Centrally coordinates paperless ingestion, Safe Exam Browser locks, live telemetry heartbeats, and mark ledgers.
                   </p>
+                  <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-center gap-2 text-[10px] text-slate-500 font-medium">
+                    <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600" /> 100% Zero-Paper
+                    </span>
+                    <span>•</span>
+                    <span>12ms Sync</span>
+                    <span>•</span>
+                    <span>256-Bit TLS</span>
+                  </div>
+
+                  {/* Downward pointer notch */}
+                  <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white/95 border-r border-b border-blue-100 rotate-45" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -362,7 +365,7 @@ export default function DigitalPipelineBeam() {
         {/* ============================================================ */}
         {/* RIGHT COLUMN — Execution & Compliance (Nodes 04, 05, 06, 07) */}
         {/* ============================================================ */}
-        <div className="flex flex-col justify-between h-full py-2 sm:py-3 z-20 w-14 sm:w-52">
+        <div className="flex flex-col justify-between h-full py-2 sm:py-6 z-20 w-14 sm:w-48">
           {/* Node 04: Terminal Lockdown */}
           <NodeItem
             ref={node4Ref}
@@ -524,11 +527,10 @@ export default function DigitalPipelineBeam() {
                 setActiveStageId(s.id);
                 setHoveredStageId(null);
               }}
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 transition-all flex items-center gap-1.5 cursor-pointer ${
-                isSel
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 transition-all flex items-center gap-1.5 cursor-pointer ${isSel
                   ? 'bg-primary text-white shadow-xs font-bold'
                   : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
-              }`}
+                }`}
             >
               <span className="font-mono text-[10px] opacity-80">{s.num}</span>
               <span>{s.title}</span>
@@ -537,84 +539,6 @@ export default function DigitalPipelineBeam() {
         })}
       </div>
 
-      {/* ============================================================ */}
-      {/* DYNAMIC PIPELINE INSPECTOR CARD (Shows Details on Tap / Hover) */}
-      {/* ============================================================ */}
-      <div className="w-full max-w-5xl mt-3 sm:mt-6">
-        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-4 sm:p-6 transition-all duration-300">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 sm:pb-4 border-b border-slate-100">
-            <div className="flex items-center gap-3 min-w-0">
-              <span
-                className={`w-9 h-9 rounded-xl flex items-center justify-center font-extrabold text-sm border shrink-0 ${activeStage.badgeBg} ${activeStage.badgeBorder}`}
-              >
-                {activeStage.num}
-              </span>
-              <div className="min-w-0">
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                    {activeStage.category}
-                  </span>
-                  <span className="text-slate-300">•</span>
-                  <span className="text-[11px] font-semibold text-primary truncate">
-                    {activeStage.role}
-                  </span>
-                </div>
-                <h3 className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5 truncate">
-                  {activeStage.title}
-                </h3>
-              </div>
-            </div>
-
-            {/* Stepper Controls & Metric Badge */}
-            <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3 w-full sm:w-auto">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] sm:text-xs font-semibold truncate max-w-[200px] sm:max-w-none">
-                <Zap className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span className="truncate">{activeStage.metric}</span>
-              </span>
-
-              <div className="flex items-center gap-1 shrink-0">
-                <button
-                  onClick={handlePrev}
-                  className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors cursor-pointer"
-                  aria-label="Previous step"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <span className="text-xs font-mono font-semibold text-slate-500 px-1.5 sm:px-2">
-                  {activeStage.num === 'PWS' ? 'CORE' : `${activeStage.num} / 07`}
-                </span>
-                <button
-                  onClick={handleNext}
-                  className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors cursor-pointer"
-                  aria-label="Next step"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Description & Key Highlights */}
-          <div className="pt-4 grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-            <div className="md:col-span-7">
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                {activeStage.fullDesc}
-              </p>
-            </div>
-            <div className="md:col-span-5 flex flex-wrap gap-2">
-              {activeStage.highlights.map((h, i) => (
-                <span
-                  key={i}
-                  className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-700 bg-slate-50 border border-slate-200/90 px-2.5 py-1 rounded-lg"
-                >
-                  <CheckCircle2 className="w-3 h-3 text-primary shrink-0" />
-                  <span>{h}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
@@ -680,39 +604,62 @@ const NodeItem = React.forwardRef<
         </p>
       </div>
 
-      {/* Floating Hover Details Card (Appears on desktop hover only; on mobile the inspector card below displays it) */}
+      {/* Floating Hover Details Card (Positioned to NEVER overlap center hub or boundary edges) */}
       <AnimatePresence>
         {isHovered && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: alignRight ? 0 : 0, x: alignRight ? -10 : 10 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, scale: 0.92 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className={`hidden sm:block absolute z-50 w-64 sm:w-72 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-2xl pointer-events-none text-left ${
-              alignRight
-                ? 'right-full mr-3 top-1/2 -translate-y-1/2'
-                : 'left-full ml-3 top-1/2 -translate-y-1/2'
+            className={`hidden sm:block absolute z-50 w-56 sm:w-60 p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-xl shadow-blue-900/5 pointer-events-none text-left ${
+              alignRight ? 'right-full mr-3' : 'left-full ml-3'
+            } ${
+              stage.num === '01' || stage.num === '04'
+                ? 'top-0'
+                : stage.num === '03' || stage.num === '07'
+                ? 'bottom-0'
+                : stage.num === '05'
+                ? 'bottom-[-10px]'
+                : stage.num === '06'
+                ? 'top-[-10px]'
+                : 'top-1/2 -translate-y-1/2'
             }`}
           >
-            <div className="flex items-center justify-between gap-2 pb-2 mb-2 border-b border-slate-100">
+            {/* Directional arrow notch */}
+            <div
+              className={`absolute w-2.5 h-2.5 bg-white/95 border-slate-200/90 rotate-45 ${
+                alignRight
+                  ? '-right-1.5 border-t border-r'
+                  : '-left-1.5 border-b border-l'
+              } ${
+                stage.num === '01' || stage.num === '04'
+                  ? 'top-5'
+                  : stage.num === '03' || stage.num === '07'
+                  ? 'bottom-5'
+                  : 'top-1/2 -translate-y-1/2'
+              }`}
+            />
+
+            <div className="flex items-center justify-between gap-1.5 pb-2 mb-2 border-b border-slate-100">
               <span
-                className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${stage.badgeBg} ${stage.badgeBorder}`}
+                className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border ${stage.badgeBg} ${stage.badgeBorder}`}
               >
                 STAGE {stage.num}
               </span>
-              <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+              <span className="text-[9px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 truncate max-w-[110px]">
                 {stage.metric}
               </span>
             </div>
 
-            <h5 className="font-extrabold text-xs text-slate-900">{stage.title}</h5>
-            <p className="text-[11px] text-slate-600 mt-1 leading-relaxed">{stage.fullDesc}</p>
+            <h5 className="font-extrabold text-xs text-slate-900 leading-snug">{stage.title}</h5>
+            <p className="text-[11px] text-slate-600 mt-1 leading-relaxed font-normal">{stage.fullDesc}</p>
 
             <div className="mt-2.5 pt-2 border-t border-slate-100 space-y-1">
               {stage.highlights.slice(0, 2).map((h, i) => (
                 <div key={i} className="flex items-center gap-1.5 text-[10px] text-slate-500">
                   <CheckCircle2 className="w-3 h-3 text-primary shrink-0" />
-                  <span>{h}</span>
+                  <span className="truncate">{h}</span>
                 </div>
               ))}
             </div>
@@ -724,3 +671,4 @@ const NodeItem = React.forwardRef<
 });
 
 NodeItem.displayName = 'NodeItem';
+

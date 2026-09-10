@@ -15,6 +15,8 @@ export default function ROICalculator() {
   const [intExams, setIntExams] = useState<number>(2);
   const [teaMin, setTeaMin] = useState<number>(20000);
   const [teaMax, setTeaMax] = useState<number>(50000);
+  const [hodMin, setHodMin] = useState<number>(50000);
+  const [hodMax, setHodMax] = useState<number>(100000);
 
   const calculations = useMemo(() => {
     const paperCost = ansCost + qCost;
@@ -23,6 +25,8 @@ export default function ROICalculator() {
 
     const teaAvg = (teaMin + teaMax) / 2;
     const teaHourly = teaAvg / 30 / 8;
+    const hodAvg = (hodMin + hodMax) / 2;
+    const hodHourly = hodAvg / 30 / 8;
 
     const classes = students / 60;
     const pInstances = students * pracSubj * pracExams;
@@ -53,6 +57,7 @@ export default function ROICalculator() {
     return {
       annualPaperCost,
       teaHourly,
+      hodHourly,
       hrsBefore: Math.round(hrsBefore),
       hrsAfter: Math.round(hrsAfter),
       costBefore,
@@ -60,7 +65,7 @@ export default function ROICalculator() {
       totalSavings,
       timeSavedPercent,
     };
-  }, [students, ansCost, qCost, pracSubj, pracExams, intSubj, intExams, teaMin, teaMax]);
+  }, [students, ansCost, qCost, pracSubj, pracExams, intSubj, intExams, teaMin, teaMax, hodMin, hodMax]);
 
   const formatCurrency = (val: number) =>
     '₹' + Math.round(val).toLocaleString('en-IN');
@@ -96,21 +101,18 @@ export default function ROICalculator() {
             </h4>
             <div className="space-y-3.5 sm:space-y-4">
               <div>
-                <div className="flex justify-between text-xs sm:text-sm mb-1.5 font-medium text-slate-700">
-                  <label htmlFor="students">Total Students Enrolled</label>
-                  <span className="text-primary font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100 text-xs">
-                    {students.toLocaleString('en-IN')} students
-                  </span>
-                </div>
+                <label htmlFor="students" className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5">
+                  Total Students Enrolled
+                </label>
                 <input
                   id="students"
-                  type="range"
-                  min={100}
-                  max={10000}
+                  type="number"
+                  min={10}
+                  max={50000}
                   step={50}
                   value={students}
-                  onChange={(e) => setStudents(Number(e.target.value))}
-                  className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary"
+                  onChange={(e) => setStudents(Math.max(1, Number(e.target.value)))}
+                  className="w-full px-3.5 py-2 text-sm border border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 font-bold focus:bg-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all"
                 />
               </div>
 
@@ -239,6 +241,40 @@ export default function ROICalculator() {
                   step={5000}
                   value={teaMax}
                   onChange={(e) => setTeaMax(Math.max(teaMin, Number(e.target.value)))}
+                  className="w-full px-2.5 sm:px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 font-medium focus:bg-white focus:border-primary focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2.5 sm:mb-3 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-primary"></span> 4. HOD Salary Range (₹/mo)
+            </h4>
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
+              <div>
+                <label htmlFor="hodMin" className="block text-[11px] font-semibold text-slate-600 mb-1 truncate">
+                  Min HOD Salary (₹)
+                </label>
+                <input
+                  id="hodMin"
+                  type="number"
+                  step={5000}
+                  value={hodMin}
+                  onChange={(e) => setHodMin(Math.max(20000, Number(e.target.value)))}
+                  className="w-full px-2.5 sm:px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 font-medium focus:bg-white focus:border-primary focus:outline-none"
+                />
+              </div>
+              <div>
+                <label htmlFor="hodMax" className="block text-[11px] font-semibold text-slate-600 mb-1 truncate">
+                  Max HOD Salary (₹)
+                </label>
+                <input
+                  id="hodMax"
+                  type="number"
+                  step={5000}
+                  value={hodMax}
+                  onChange={(e) => setHodMax(Math.max(hodMin, Number(e.target.value)))}
                   className="w-full px-2.5 sm:px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 font-medium focus:bg-white focus:border-primary focus:outline-none"
                 />
               </div>

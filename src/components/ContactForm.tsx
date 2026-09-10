@@ -24,8 +24,11 @@ export default function ContactForm() {
     if (!formData.name.trim()) newErrors.name = 'Please enter your name';
     if (!formData.institution.trim()) newErrors.institution = 'Please enter your college/institution';
     if (!formData.designation.trim()) newErrors.designation = 'Please enter your designation';
-    if (!formData.email.trim() || !/^\S+@\S+\.\S+$/.test(formData.email)) {
+    if (formData.email.trim() && !/^\S+@\S+\.\S+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
+    }
+    if (formData.phone.trim() && !/^[0-9]{10}$/.test(formData.phone)) {
+      newErrors.phone = 'Please enter a valid 10-digit mobile number (digits only)';
     }
     if (!formData.message.trim()) newErrors.message = 'Please enter your message or requirements';
     return newErrors;
@@ -160,11 +163,19 @@ export default function ContactForm() {
               <input
                 id="phone"
                 type="tel"
+                inputMode="numeric"
+                maxLength={10}
                 value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="+91 98765 43210"
-                className="w-full px-4 py-2.5 text-sm border border-slate-200 rounded-xl bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all"
+                onChange={(e) => {
+                  const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
+                  setFormData({ ...formData, phone: digits });
+                }}
+                placeholder="10-digit mobile (e.g. 9876543210)"
+                className={`w-full px-4 py-2.5 text-sm border rounded-xl bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all ${
+                  errors.phone ? 'border-rose-500 bg-rose-50/30' : 'border-slate-200'
+                }`}
               />
+              {errors.phone && <p className="text-[11px] text-rose-600 mt-1">{errors.phone}</p>}
             </div>
 
             {/* Estimated Students */}

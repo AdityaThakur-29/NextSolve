@@ -18,10 +18,10 @@ export const stats = [
     label: 'Paperless Workflow',
   },
   {
-    id: 'deployment',
-    value: 1,
-    suffix: '',
-    label: 'Year of Active Deployment',
+    id: 'sessions',
+    value: 450,
+    suffix: '+',
+    label: 'Sessions Conducted',
   },
 ];
 

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="60%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" rx="36" fill="url(#bgGrad)" />
+
+  <!-- Subtle Ambient Glow -->
+  <circle cx="200" cy="180" r="140" fill="#2563eb" opacity="0.25" />
+
+  <!-- Academic Crest Laurel Border -->
+  <circle cx="200" cy="170" r="110" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-dasharray="8 6" opacity="0.6" />
+
+  <!-- Distinguished Academic Silhouette -->
+  <!-- Shoulders / Blazer -->
+  <path d="M 90 350 C 90 280, 140 250, 200 250 C 260 250, 310 280, 310 350 Z" fill="#090d16" />
+  <!-- Tie & Shirt Collar -->
+  <polygon points="175,250 225,250 200,310" fill="#f8fafc" />
+  <polygon points="194,260 206,260 203,320 197,320" fill="#2563eb" />
+
+  <!-- Head -->
+  <ellipse cx="200" cy="170" rx="60" ry="72" fill="#e2e8f0" />
+  
+  <!-- Hair & Spectacles -->
+  <path d="M 140 160 C 140 100, 260 100, 260 160 C 248 115, 152 115, 140 160 Z" fill="#475569" />
+  <!-- Glasses -->
+  <rect x="156" y="152" width="34" height="22" rx="6" fill="none" stroke="#1e293b" stroke-width="3" />
+  <rect x="210" y="152" width="34" height="22" rx="6" fill="none" stroke="#1e293b" stroke-width="3" />
+  <line x1="190" y1="162" x2="210" y2="162" stroke="#1e293b" stroke-width="3" />
+
+  <!-- Gold Star / Seal Badge -->
+  <g transform="translate(200, 345) scale(0.9)">
+    <circle cx="0" cy="0" r="28" fill="url(#goldGrad)" stroke="#ffffff" stroke-width="2" />
+    <path d="M 0 -14 L 4 -4 L 14 -4 L 6 3 L 9 13 L 0 7 L -9 13 L -6 3 L -14 -4 L -4 -4 Z" fill="#ffffff" />
+  </g>
+</svg>

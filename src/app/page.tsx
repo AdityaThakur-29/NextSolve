@@ -18,11 +18,9 @@ import {
   CheckCircle2,
   Lock,
   Zap,
-  FileX2,
   Users,
   Building2,
   GraduationCap,
-  ChevronRight,
   FileText,
   Printer,
   Scissors,
@@ -40,13 +38,9 @@ import {
   Eye,
   Star,
   Shuffle,
-  Clock,
   Sparkles,
-  type LucideIcon,
+  Check,
 } from 'lucide-react';
-
-// Trimmed, high-impact copy strictly adhering to:
-// 1 icon, 3-6 word heading, max 12-word supporting line, zero bullet points
 
 const traditionalSteps = [
   { step: 'Question Paper Creation', icon: FileText, pain: 'Hours wasted on repetitive manual formatting.' },
@@ -59,29 +53,11 @@ const traditionalSteps = [
   { step: 'Delayed Result Publication', icon: BarChart3, pain: 'Weeks required to publish consolidated department marks.' },
 ];
 
-const pipelineSteps = [
-  { num: '01', title: 'Exam Setup', desc: 'Create batches and upload question banks in minutes.' },
-  { num: '02', title: 'Question Ingestion', desc: 'System automatically parses and balances question criteria.' },
-  { num: '03', title: 'Random Digital Slips', desc: 'Unique question papers assigned instantly to student terminals.' },
-  { num: '04', title: 'Terminal Login', desc: 'Students enter locked browser with automatic attendance logging.' },
-  { num: '05', title: 'Live Lab Proctoring', desc: 'Supervise all terminal heartbeats and activities in real time.' },
-  { num: '06', title: 'Instant Evaluation', desc: 'Grade code side-by-side with automated MCQ scoring.' },
-  { num: '07', title: 'Instant Ledgers', desc: 'Export certified mark sheets and attendance instantly to Excel.' },
-];
-
-const systemPillars = [
-  { icon: FileX2, title: '100% Zero-Paper', desc: 'Completely replaces question slips and answer booklets with digital execution.' },
-  { icon: ShieldCheck, title: 'Audited Reliability', desc: 'Engineered for synchronized, zero-downtime campus examination sessions.' },
-  { icon: Lock, title: 'Tamper-Proof Security', desc: 'Safe Exam Browser locks terminals and eliminates external malpractice.' },
-  { icon: Zap, title: 'Automated Operations', desc: 'Reclaims hundreds of faculty hours through instant grading and exports.' },
-];
-
-// The ONLY bordered-card-grid on the page
 const coreFeatures = [
   { icon: Shuffle, title: 'Randomized Question Slips', desc: 'Distributes randomized digital question papers automatically to each student terminal.' },
   { icon: Monitor, title: 'Live Workstation Surveillance', desc: 'Supervises student heartbeats and flags unauthorized tab switches in real time.' },
   { icon: Lock, title: 'Safe Exam Browser Lock', desc: 'Restricts student devices from accessing external tools, ChatGPT, or unauthorized web pages.' },
-  { icon: Code, title: 'Student Practical Code IDE', desc: 'Direct digital programming environment eliminating manual handwriting on paper answer sheets.' },
+  { icon: Code, title: 'Student Portal', desc: 'Direct digital programming environment eliminating manual handwriting on paper answer sheets.' },
   { icon: Zap, title: 'Automated MCQ Evaluation', desc: 'Instant auto-scoring and grade calculation executed immediately upon student test submission.' },
   { icon: BarChart3, title: 'Side-by-Side Grading Console', desc: 'Enables teachers to review student source code and execution outputs in one window.' },
 ];
@@ -90,20 +66,32 @@ const stakeholderRoles = [
   {
     icon: Building2,
     role: 'For College Administrators',
-    summary: 'Eliminate examination printing expenses with real-time department oversight and permanent digital records.',
-    href: '/for-colleges',
+    summary: 'Eliminate examination printing expenses with real-time department oversight, automated records, and centralized institutional control.',
+    highlights: [
+      'Eliminate 100% of exam printing budgets',
+      'Instant cross-department batch oversight',
+      'One-click certified ledger exports to Excel',
+    ],
   },
   {
     icon: Users,
     role: 'For Faculty & Examiners',
     summary: 'Reclaim weekends with automated digital question slips, side-by-side evaluation, and instant marks tallying.',
-    href: '/for-faculty',
+    highlights: [
+      'Zero manual scissor paper cutting',
+      'Side-by-side code review & execution check',
+      'Automated attendance logged on terminal login',
+    ],
   },
   {
     icon: GraduationCap,
     role: 'For Students',
-    summary: 'Type and execute code directly in an IDE instead of handwriting algorithms on paper.',
-    href: '/for-students',
+    summary: 'Type, execute, and verify code directly in a modern digital portal instead of handwriting algorithms on physical paper sheets.',
+    highlights: [
+      'Native programming environment with syntax support',
+      'Fair, randomized question distribution',
+      'Instant upload and submission confirmation',
+    ],
   },
 ];
 
@@ -118,75 +106,67 @@ const securityItems = [
 
 const campusStats = [
   { value: 2500, suffix: '+', label: 'Students Examined' },
+  { value: 450, suffix: '+', label: 'Sessions Conducted' },
   { value: 4.5, suffix: '★', label: 'Faculty Feedback Rating' },
   { value: 100, suffix: '%', label: 'Paperless Delivery' },
-  { value: 1, suffix: '+', label: 'Year Active Deployment' },
 ];
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-900">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 selection:bg-blue-100 selection:text-primary">
       <Navbar />
 
       <main className="flex-1 relative z-10 bg-white shadow-xl shadow-slate-900/5">
         {/* ============================================================ */}
-        {/* SECTION 1 — HERO (Open, spacious, unboxed) */}
+        {/* SECTION 1 — HERO */}
         {/* ============================================================ */}
         <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 overflow-hidden hero-radial-pattern hero-concentric-circles border-b border-slate-100">
           <div className="container-custom relative z-10">
-            <div className="max-w-4xl mx-auto text-center space-y-5">
+            <div className="max-w-4xl mx-auto text-center space-y-6">
               {/* Centered Pill Announcement */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-primary text-[11px] sm:text-xs font-semibold shadow-2xs max-w-full">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-primary text-xs font-semibold shadow-2xs max-w-full">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0"></span>
-                <span className="truncate">Verified Campus Deployment • Thakur College, Mumbai</span>
+                <span className="truncate">Live Campus Implementation • Automated Examination OS</span>
               </div>
 
-              {/* Main Headline */}
-              <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.15] sm:leading-[1.1]">
-                The Operating System for the{' '}
+              {/* Main Headline (H1) */}
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12] text-balance">
+                Transform paperwork into a{' '}
                 <span className="text-primary underline decoration-blue-200 decoration-wavy decoration-from-font">
-                  Future Campus.
+                  digital workflow.
                 </span>
               </h1>
 
-              {/* Subheadline (Clean, 1-line) */}
-              <p className="text-base sm:text-xl text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
-                From Question Papers to Practical Exams — We Automate Everything.
+              {/* Subheadline (H2) */}
+              <h2 className="text-lg sm:text-2xl text-slate-700 font-semibold max-w-2xl mx-auto leading-snug text-balance">
+                From Internal Exams to Practical Exams — We Automate Everything.
+              </h2>
+
+              {/* Supporting Tagline */}
+              <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto leading-relaxed text-pretty">
+                Replace outdated manual steps with a seamless, end-to-end practical evaluation system powered by NextSolves.
               </p>
 
-              <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto leading-relaxed">
-                Transform paper-based examination friction into a 100% paperless, automated digital workflow.
-              </p>
-
-              {/* Hero Action Buttons */}
+              {/* Hero Action Button (Single CTA linking to #contact) */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                <Link href="/contact" className="w-full sm:w-auto">
+                <Link href="/#contact" className="w-full sm:w-auto">
                   <Button
                     variant="default"
                     size="lg"
-                    className="w-full sm:w-auto rounded-full shadow-sm hover:shadow-md px-7 text-sm font-semibold"
+                    className="w-full sm:w-auto rounded-full shadow-sm hover:shadow-md px-8 py-6 text-sm font-semibold tracking-wide"
                   >
-                    <span>Request an Institutional Demo</span>
-                    <ArrowRight className="w-4 h-4 ml-1" />
-                  </Button>
-                </Link>
-                <Link href="/product" className="w-full sm:w-auto">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full sm:w-auto rounded-full px-7 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-                  >
-                    Explore Platform
+                    <span>Book an Institutional Demo</span>
+                    <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
               </div>
 
               {/* Minimal Trust Micro-Strip */}
-              <div className="pt-2 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
-                <div className="flex items-center gap-1">
+              <div className="pt-3 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
+                <div className="flex items-center gap-1.5">
                   <div className="flex text-amber-400">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                   <span className="font-bold text-slate-800">4.5 / 5 Rating</span>
@@ -200,7 +180,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Central Product Showcase (No cluttering flanking cards) */}
+            {/* Central Product Showcase */}
             <div className="mt-12 sm:mt-16 max-w-5xl mx-auto">
               <ProductMockup />
             </div>
@@ -208,7 +188,7 @@ export default function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 2 — STATS STRIP (Divider-based list, zero card boxes) */}
+        {/* SECTION 2 — STATS STRIP */}
         {/* ============================================================ */}
         <section className="bg-slate-50/70 border-b border-slate-200/80 py-10">
           <div className="container-custom">
@@ -226,34 +206,33 @@ export default function HomePage() {
             </div>
 
             <div className="mt-7 pt-6 border-t border-slate-200/80 text-center flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs font-semibold text-slate-500">
-              <span className="text-slate-700">Verified Active Institution:</span>
+              <span className="text-slate-700">Active Institution:</span>
               <span className="px-3 py-0.5 bg-white text-slate-900 border border-slate-200 rounded-full font-bold shadow-2xs">
                 Thakur Shyamnarayan Degree College, Mumbai
               </span>
               <span className="text-slate-300">•</span>
-              <span className="text-emerald-700 font-medium">1+ Year Continuous Zero-Paper Operations</span>
+              <span className="text-emerald-700 font-medium">Continuous Zero-Paper Operations</span>
             </div>
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 3 — TRADITIONAL FRICTION (Open Grid — No cards) */}
+        {/* SECTION 3 — TRADITIONAL FRICTION */}
         {/* ============================================================ */}
-        <section className="section-padding bg-white">
+        <section className="section-padding bg-white scroll-mt-20" id="problems">
           <div className="container-custom max-w-5xl">
             <div className="max-w-2xl mx-auto text-center mb-14">
               <span className="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
                 The Paper Problem
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 text-balance">
                 Why Colleges Struggle with Paper-Based Exams
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
-                Traditional exam cycles waste weeks of faculty labor and thousands of rupees in printing.
+              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-[65ch] mx-auto text-pretty">
+                Traditional practical exam cycles waste weeks of faculty labor, incur unnecessary printing costs, and risk manual transcription errors.
               </p>
             </div>
 
-            {/* Light, responsive grid: card containers on mobile for visual separation */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
               {traditionalSteps.map((item, index) => {
                 const IconComponent = item.icon;
@@ -278,18 +257,18 @@ export default function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 4 — PWS DIGITAL PIPELINE (Animated Integration Beam) */}
+        {/* SECTION 4 — PWS DIGITAL PIPELINE */}
         {/* ============================================================ */}
-        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70 overflow-hidden">
+        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70 overflow-hidden scroll-mt-20" id="pipeline">
           <div className="container-custom max-w-5xl">
             <div className="max-w-2xl mx-auto text-center mb-12">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 The PWS Solution
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 text-balance">
                 The Streamlined Digital Pipeline
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
+              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-[65ch] mx-auto text-pretty">
                 An automated, synchronized digital journey replacing physical paper shuffling.{' '}
                 <span className="hidden sm:inline">Hover over or click any stage</span>
                 <span className="sm:hidden">Tap any stage below</span> to inspect operational details.
@@ -301,59 +280,23 @@ export default function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 5 — SYSTEM PILLARS (Open Feature Row — No cards) */}
+        {/* SECTION 5 — CORE FEATURES */}
         {/* ============================================================ */}
-        <section className="section-padding bg-white">
-          <div className="container-custom max-w-5xl">
-            <div className="max-w-2xl mx-auto text-center mb-14">
-              <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-                Foundations
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
-                Built for Critical Campus Operations
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
-                Four foundational commitments guiding every examination executed on PWS.
-              </p>
-            </div>
-
-            {/* Open 4-Column Row without card boxes */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {systemPillars.map((p, idx) => {
-                const IconComponent = p.icon;
-                return (
-                  <div key={idx} className="space-y-2.5">
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center">
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-                    <h3 className="text-sm font-bold text-slate-900">{p.title}</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">{p.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* SECTION 6 — CORE FEATURES (THE ONLY BORDERED CARD GRID ON PAGE) */}
-        {/* ============================================================ */}
-        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70">
+        <section className="section-padding bg-white scroll-mt-20" id="features">
           <div className="container-custom max-w-5xl">
             <div className="max-w-2xl mx-auto text-center mb-14">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 Core Capabilities
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 text-balance">
                 Everything Modern Colleges Need to Run Exams
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
+              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-[65ch] mx-auto text-pretty">
                 Engineered for college examination boards, faculty examiners, and computer lab supervisors.
               </p>
             </div>
 
-            {/* Standardized card grid: responsive padding and gap */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
               {coreFeatures.map((feat, idx) => {
                 const IconComponent = feat.icon;
                 return (
@@ -373,54 +316,50 @@ export default function HomePage() {
                 );
               })}
             </div>
-
-            <div className="text-center mt-10">
-              <Link
-                href="/features"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
-              >
-                <span>View Complete Architecture & Modules</span>
-                <ChevronRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 7 — STAKEHOLDER ROLES (Open 3-Column — Zero bullet lists) */}
+        {/* SECTION 6 — STAKEHOLDER ROLES (Consolidated Summary Cards) */}
         {/* ============================================================ */}
-        <section className="section-padding bg-white">
+        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70 scroll-mt-20" id="roles">
           <div className="container-custom max-w-5xl">
             <div className="max-w-2xl mx-auto text-center mb-14">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 Tailored Impact
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 text-balance">
                 Experience by Campus Role
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
-                Delivering concrete operational relief without complicated workflows.
+              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-[65ch] mx-auto text-pretty">
+                Delivering concrete operational relief without complicated workflows or software bloat.
               </p>
             </div>
 
-            {/* 3-Column role showcase with cards on mobile */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {stakeholderRoles.map((role, idx) => {
                 const IconComponent = role.icon;
                 return (
                   <div
                     key={idx}
-                    className="p-4 sm:p-0 rounded-2xl sm:rounded-none bg-slate-50/60 sm:bg-transparent border border-slate-200/80 sm:border-0 space-y-3 pt-4 sm:pt-6 md:pt-0 md:px-6 first:pl-0 last:pr-0"
+                    className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-sm transition-all flex flex-col justify-between"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center">
-                      <IconComponent className="w-5 h-5" />
+                    <div className="space-y-4">
+                      <div className="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center">
+                        <IconComponent className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-base font-bold text-slate-900">{role.role}</h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{role.summary}</p>
                     </div>
-                    <h3 className="text-base font-bold text-slate-900">{role.role}</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">{role.summary}</p>
-                    <div className="pt-2">
-                      <Link href={role.href} className="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1">
-                        Learn More <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
+
+                    <div className="mt-6 pt-5 border-t border-slate-100 space-y-2">
+                      <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Key Benefits</div>
+                      {role.highlights.map((h, hIdx) => (
+                        <div key={hIdx} className="flex items-start gap-2 text-xs text-slate-700">
+                          <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                          <span>{h}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 );
@@ -430,30 +369,29 @@ export default function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 8 — SECURITY ARCHITECTURE (Open 3x2 Grid — No boxes) */}
+        {/* SECTION 7 — SECURITY ARCHITECTURE */}
         {/* ============================================================ */}
-        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70">
+        <section className="section-padding bg-white scroll-mt-20" id="security">
           <div className="container-custom max-w-5xl">
             <div className="max-w-2xl mx-auto text-center mb-14">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 Security by Design
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 text-balance">
                 Enterprise Multi-Tenant Exam Security
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
-                Cryptographic role enforcement, Safe Exam Browser kiosk mode, and immutable logs.
+              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-[65ch] mx-auto text-pretty">
+                Cryptographic role enforcement, Safe Exam Browser kiosk mode, and immutable server logs.
               </p>
             </div>
 
-            {/* Security items with subtle cards on mobile */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
               {securityItems.map((sec, idx) => {
                 const IconComponent = sec.icon;
                 return (
                   <div
                     key={idx}
-                    className="p-4 sm:p-0 rounded-2xl sm:rounded-none bg-white sm:bg-transparent border border-slate-200/90 sm:border-0 shadow-2xs sm:shadow-none space-y-2"
+                    className="p-4 sm:p-0 rounded-2xl sm:rounded-none bg-slate-50/50 sm:bg-transparent border border-slate-200/90 sm:border-0 shadow-2xs sm:shadow-none space-y-2"
                   >
                     <div className="w-9 h-9 rounded-xl bg-blue-50 text-primary flex items-center justify-center">
                       <IconComponent className="w-4 h-4" />
@@ -464,33 +402,23 @@ export default function HomePage() {
                 );
               })}
             </div>
-
-            <div className="text-center mt-10">
-              <Link
-                href="/security"
-                className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline"
-              >
-                <span>Read Full Technical Security Architecture</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 9 — OPERATIONAL COMPARISON TABLE */}
+        {/* SECTION 8 — OPERATIONAL COMPARISON TABLE */}
         {/* ============================================================ */}
-        <section className="section-padding bg-white">
+        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70 scroll-mt-20" id="comparison">
           <div className="container-custom max-w-5xl">
             <div className="max-w-2xl mx-auto text-center mb-12">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 Side-by-Side Analysis
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 text-balance">
                 Traditional Manual Setup vs. NextSolves PWS
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
-                A direct comparison of administrative effort, exam integrity, and cost.
+              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-[65ch] mx-auto text-pretty">
+                A direct comparison of administrative effort, exam integrity, and institutional cost.
               </p>
             </div>
 
@@ -499,18 +427,15 @@ export default function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 10 — DEPLOYMENT GALLERY (Field Proof Media) */}
+        {/* SECTION 9 — IMPLEMENTATION SHOWCASE */}
         {/* ============================================================ */}
-        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70 overflow-hidden">
+        <section className="section-padding bg-white scroll-mt-20" id="implementation">
           <div className="container-custom max-w-5xl mb-10">
             <div className="max-w-2xl mx-auto text-center">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                Verified Field Deployment
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
-                Live Deployment at Thakur Shyamnarayan Degree College
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 text-balance">
+                Trusted & Implemented by Thakur Shyamnarayan Degree College
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
+              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-[65ch] mx-auto text-pretty">
                 Over 2,500+ students examined with 100% paperless delivery in active computer labs.
               </p>
             </div>
@@ -522,23 +447,23 @@ export default function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 11 — FACULTY ENDORSEMENTS (GSAP Horizontal Scroll Trigger) */}
+        {/* SECTION 10 — FACULTY & LEADERSHIP ENDORSEMENTS */}
         {/* ============================================================ */}
         <TestimonialsCarousel />
 
         {/* ============================================================ */}
-        {/* SECTION 12 — ROI CALCULATOR */}
+        {/* SECTION 11 — ROI CALCULATOR */}
         {/* ============================================================ */}
-        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70" id="calculator">
+        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70 scroll-mt-20" id="calculator">
           <div className="container-custom max-w-5xl">
             <div className="max-w-2xl mx-auto text-center mb-12">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 Institutional Calculator
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 text-balance">
                 Estimate Your Campus Savings
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
+              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-[65ch] mx-auto text-pretty">
                 Adjust student counts and exam frequency to estimate direct paper and faculty grading time savings.
               </p>
             </div>
@@ -548,48 +473,39 @@ export default function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 13 — FAQ ACCORDION */}
+        {/* SECTION 12 — FAQ ACCORDION */}
         {/* ============================================================ */}
-        <section className="section-padding bg-white" id="faq">
-          <div className="container-custom max-w-3xl">
+        <section className="section-padding bg-white scroll-mt-20" id="faq">
+          <div className="container-custom max-w-4xl">
             <div className="max-w-2xl mx-auto text-center mb-12">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 Common Questions
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 text-balance">
                 Frequently Asked Questions
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2">
-                Answers regarding PWS deployment, safe exam browser, and institutional onboarding.
+              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-[65ch] mx-auto text-pretty">
+                Clear answers regarding PWS implementation, Safe Exam Browser security, and institutional onboarding.
               </p>
             </div>
 
-            <FAQAccordion limit={6} />
-
-            <div className="text-center mt-8">
-              <Link
-                href="/faq"
-                className="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1"
-              >
-                View All Frequently Asked Questions <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
+            <FAQAccordion limit={10} />
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/* SECTION 14 — FINAL CLOSING CTA + CONTACT */}
+        {/* SECTION 13 — FINAL CLOSING CTA + CONTACT FORM */}
         {/* ============================================================ */}
-        <section className="section-padding bg-slate-50 border-t border-slate-200/80" id="contact">
+        <section className="section-padding bg-slate-50 border-t border-slate-200/80 scroll-mt-20" id="contact">
           <div className="container-custom max-w-3xl">
             <div className="text-center mb-10">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 Campus Onboarding
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 text-balance">
                 Ready to Modernize Your Examination Workflow?
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2 max-w-md mx-auto">
+              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-[65ch] mx-auto text-pretty">
                 Schedule an institutional walkthrough for your principal, academic council, and IT lab in-charges.
               </p>
             </div>

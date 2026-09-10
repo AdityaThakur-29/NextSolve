@@ -81,7 +81,7 @@ export const faqItems: FAQItem[] = [
     id: 'implementation',
     question: 'How does implementation work?',
     answer:
-      'PWS has been successfully deployed at educational institutions in Mumbai. The system is web-based and works on existing computer lab infrastructure. Implementation involves setting up teacher and student accounts, uploading student lists, and configuring examination parameters.',
+      'PWS has been successfully implemented at educational institutions in Mumbai. The system is web-based and works on existing computer lab infrastructure. Implementation involves setting up teacher and student accounts, uploading student lists, and configuring examination parameters.',
   },
   {
     id: 'exam-resumption',
@@ -93,6 +93,6 @@ export const faqItems: FAQItem[] = [
     id: 'request-demo',
     question: 'How can a college request a demo?',
     answer:
-      'You can request a demo by visiting our Contact page and filling out the demo request form, or by reaching out directly via email at nextsolves@gmail.com or phone at (+91) 9136234409 / 9321632938.',
+      'You can request a demo by filling out our institutional demo form below, or by reaching out directly via email at nextsolves@gmail.com or phone at (+91) 9136234409 / 9321632938.',
   },
 ];

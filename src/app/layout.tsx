@@ -1,7 +1,22 @@
 import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import SplashScreen from "@/components/SplashScreen";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-plus-jakarta",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+  weight: ["400", "500", "600", "700"],
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -54,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" className={`${plusJakarta.variable} ${jetbrainsMono.variable} scroll-smooth`} data-scroll-behavior="smooth">
       <body className="antialiased">
         <SplashScreen indicator="progress" reveal="curtain" duration={1.8} />
         <SmoothScroll>{children}</SmoothScroll>

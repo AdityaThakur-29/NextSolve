@@ -61,12 +61,24 @@ export default function FAQAccordion({
     icon: iconMap[item.id] || <HelpCircle className="w-4 h-4" />,
   }));
 
+  const mid = Math.ceil(formattedItems.length / 2);
+  const firstColumn = formattedItems.slice(0, mid);
+  const secondColumn = formattedItems.slice(mid);
+
   return (
-    <Skiper103
-      items={formattedItems}
-      defaultOpenId={formattedItems[0]?.id || null}
-      className={className}
-      allowMultiple={allowMultiple}
-    />
+    <div className={`w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 items-start ${className || ''}`}>
+      <Skiper103
+        items={firstColumn}
+        defaultOpenId={firstColumn[0]?.id || null}
+        className="w-full max-w-none"
+        allowMultiple={allowMultiple}
+      />
+      <Skiper103
+        items={secondColumn}
+        defaultOpenId={null}
+        className="w-full max-w-none"
+        allowMultiple={allowMultiple}
+      />
+    </div>
   );
 }

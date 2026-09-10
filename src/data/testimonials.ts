@@ -4,6 +4,7 @@ export interface Testimonial {
   name: string;
   designation: string;
   institution: string;
+  image?: string;
 }
 
 export const testimonials: Testimonial[] = [
@@ -70,5 +71,10 @@ export const testimonials: Testimonial[] = [
     name: 'Dr. G.D. Giri',
     designation: 'Principal',
     institution: 'Thakur Shyamnarayan Degree College',
+    image: '/assets/team/dr-gd-giri.png',
   },
 ];
+
+export const principalTestimonial: Testimonial = testimonials.find((t) => t.id === 'gd-giri')!;
+export const facultyTestimonials: Testimonial[] = testimonials.filter((t) => t.id !== 'gd-giri');
+

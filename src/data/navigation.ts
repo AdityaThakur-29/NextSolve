@@ -5,58 +5,39 @@ export interface NavItem {
 }
 
 export const navigation: NavItem[] = [
-  {
-    label: 'Product',
-    href: '/product',
-    children: [
-      { label: 'Overview', href: '/product' },
-      { label: 'Features', href: '/features' },
-      { label: 'Security', href: '/security' },
-    ],
-  },
-  {
-    label: 'Solutions',
-    href: '#',
-    children: [
-      { label: 'For Colleges', href: '/for-colleges' },
-      { label: 'For Faculty', href: '/for-faculty' },
-      { label: 'For Students', href: '/for-students' },
-    ],
-  },
-  { label: 'Success', href: '/success' },
-  {
-    label: 'Resources',
-    href: '#',
-    children: [
-      { label: 'ROI Calculator', href: '/calculator' },
-      { label: 'FAQ', href: '/faq' },
-    ],
-  },
+  { label: 'Features', href: '/#features' },
+  { label: 'Dashboards', href: '/#pipeline' },
+  { label: 'Security', href: '/#security' },
+  { label: 'Calculator', href: '/#calculator' },
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'About', href: '/about' },
 ];
 
 export const footerNavigation = {
   product: [
-    { label: 'PWS Overview', href: '/product' },
-    { label: 'Features', href: '/features' },
-    { label: 'Security', href: '/security' },
+    { label: 'Core Features', href: '/#features' },
+    { label: 'Digital Pipeline', href: '/#pipeline' },
+    { label: 'Security Architecture', href: '/#security' },
+    { label: 'System Comparison', href: '/#comparison' },
   ],
   solutions: [
-    { label: 'For Colleges', href: '/for-colleges' },
-    { label: 'For Faculty', href: '/for-faculty' },
-    { label: 'For Students', href: '/for-students' },
+    { label: 'For Colleges', href: '/#roles' },
+    { label: 'For Faculty', href: '/#roles' },
+    { label: 'For Students', href: '/#roles' },
   ],
   company: [
     { label: 'About NextSolves', href: '/about' },
-    { label: 'Success Stories', href: '/success' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Campus Implementation', href: '/#implementation' },
+    { label: 'Contact & Inquiry', href: '/#contact' },
   ],
   resources: [
-    { label: 'ROI Calculator', href: '/calculator' },
-    { label: 'FAQ', href: '/faq' },
+    { label: 'ROI & Savings Calculator', href: '/#calculator' },
+    { label: 'Frequently Asked Questions', href: '/#faq' },
+    { label: 'Faculty Endorsements', href: '/#reviews' },
   ],
   legal: [
     { label: 'Privacy Policy', href: '/privacy-policy' },
-    { label: 'Terms & Conditions', href: '/terms' },
+    { label: 'Terms & Conditions', href: '/terms-and-conditions' },
   ],
 };
 
