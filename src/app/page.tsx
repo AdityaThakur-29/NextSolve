@@ -9,6 +9,7 @@ import FAQAccordion from '@/components/FAQAccordion';
 import ComparisonTable from '@/components/ComparisonTable';
 import ContactForm from '@/components/ContactForm';
 import DigitalPipelineBeam from '@/components/DigitalPipelineBeam';
+import CircleExpandButton from '@/components/CircleExpandButton';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AnimatedCounter } from '@/components/Animations';
@@ -147,18 +148,13 @@ export default function HomePage() {
                 Replace outdated manual steps with a seamless, end-to-end practical evaluation system powered by NextSolves.
               </p>
 
-              {/* Hero Action Button (Single CTA linking to #contact) */}
+              {/* Hero Action Button (Single CTA linking to #contact with Circle Expand Animation) */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                <Link href="/#contact" className="w-full sm:w-auto">
-                  <Button
-                    variant="default"
-                    size="lg"
-                    className="w-full sm:w-auto rounded-full shadow-sm hover:shadow-md px-8 py-6 text-sm font-semibold tracking-wide"
-                  >
-                    <span>Book an Institutional Demo</span>
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
+                <CircleExpandButton
+                  text="Book an Institutional Demo"
+                  href="/#contact"
+                  variant="primary"
+                />
               </div>
 
               {/* Minimal Trust Micro-Strip */}
