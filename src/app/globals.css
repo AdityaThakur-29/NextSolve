@@ -142,55 +142,57 @@ html {
   }
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-/* Web Typography Standards — Invisible, Comfortable, Scaled */
-html {
-  font-family: var(--font-sans);
-  scroll-behavior: smooth;
-}
+  /* Web Typography Standards — Invisible, Comfortable, Scaled */
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--foreground);
-  font-weight: 700;
-  text-wrap: balance;
-}
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--foreground);
+    font-weight: 700;
+    text-wrap: balance;
+  }
 
-h1 {
-  line-height: 1.12;
-  letter-spacing: -0.035em;
-}
+  h1 {
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+  }
 
-h2 {
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-}
+  h2 {
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
 
-h3 {
-  line-height: 1.28;
-  letter-spacing: -0.02em;
-}
+  h3 {
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+  }
 
-h4 {
-  line-height: 1.35;
-  letter-spacing: -0.015em;
-}
+  h4 {
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+  }
 
-p {
-  color: var(--muted-foreground);
-  line-height: 1.65;
-  text-wrap: pretty;
-}
+  p {
+    color: var(--muted-foreground);
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
 
-code, pre, kbd {
-  font-family: var(--font-mono);
+  code, pre, kbd {
+    font-family: var(--font-mono);
+  }
 }
 
 .measure-prose {

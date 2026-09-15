@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import gsap from 'gsap';
 import { principalTestimonial, facultyTestimonials } from '@/data/testimonials';
 import {
   Quote,
@@ -17,7 +18,6 @@ import {
 
 export default function TestimonialsCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [scrollPercentage, setScrollPercentage] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -31,8 +31,6 @@ export default function TestimonialsCarousel() {
     if (!el) return;
     const maxScroll = el.scrollWidth - el.clientWidth;
     const currentScroll = el.scrollLeft;
-    const pct = maxScroll > 0 ? (currentScroll / maxScroll) * 100 : 0;
-    setScrollPercentage(Math.round(pct));
     setCanScrollLeft(currentScroll > 12);
     setCanScrollRight(currentScroll < maxScroll - 12);
   };
@@ -41,26 +39,82 @@ export default function TestimonialsCarousel() {
     const el = trackRef.current;
     if (!el) return;
     updateScrollState();
+
+    let targetScroll = el.scrollLeft;
+
+    const handleWheel = (e: WheelEvent) => {
+      const isVertical = Math.abs(e.deltaY) > Math.abs(e.deltaX);
+      const delta = isVertical ? e.deltaY : e.deltaX;
+
+      if (delta === 0) return;
+
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (maxScroll <= 0) return;
+
+      const isScrollingRight = delta > 0;
+      const isScrollingLeft = delta < 0;
+
+      const canMoveRight = el.scrollLeft < maxScroll - 4;
+      const canMoveLeft = el.scrollLeft > 4;
+
+      // Intercept wheel event and smoothly scroll horizontally with GSAP if there's room to scroll
+      if ((isScrollingRight && canMoveRight) || (isScrollingLeft && canMoveLeft)) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const scrollStep = delta * 1.5;
+        const current = (gsap.getProperty(el, 'scrollLeft') as number) || el.scrollLeft;
+        targetScroll = Math.max(0, Math.min(maxScroll, current + scrollStep));
+
+        gsap.to(el, {
+          scrollLeft: targetScroll,
+          duration: 0.35,
+          ease: 'power2.out',
+          overwrite: 'auto',
+          onUpdate: updateScrollState,
+        });
+      } else {
+        // At the boundaries, let the page scroll naturally
+        targetScroll = el.scrollLeft;
+      }
+    };
+
+    el.addEventListener('wheel', handleWheel, { passive: false });
     el.addEventListener('scroll', updateScrollState, { passive: true });
     window.addEventListener('resize', updateScrollState);
+
     return () => {
+      el.removeEventListener('wheel', handleWheel);
       el.removeEventListener('scroll', updateScrollState);
       window.removeEventListener('resize', updateScrollState);
+      gsap.killTweensOf(el);
     };
   }, []);
 
   const handleScroll = (direction: 'left' | 'right') => {
     const el = trackRef.current;
     if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
     const cardStep = el.clientWidth > 768 ? 440 : 320;
-    const delta = direction === 'left' ? -cardStep : cardStep;
-    el.scrollBy({ left: delta, behavior: 'smooth' });
+    const current = (gsap.getProperty(el, 'scrollLeft') as number) || el.scrollLeft;
+    const newPos = direction === 'left'
+      ? Math.max(0, current - cardStep)
+      : Math.min(maxScroll, current + cardStep);
+
+    gsap.to(el, {
+      scrollLeft: newPos,
+      duration: 0.5,
+      ease: 'power2.out',
+      overwrite: 'auto',
+      onUpdate: updateScrollState,
+    });
   };
 
   // Drag-to-scroll handlers
   const onMouseDown = (e: React.MouseEvent) => {
     const el = trackRef.current;
     if (!el) return;
+    gsap.killTweensOf(el);
     setIsDragging(true);
     setStartX(e.pageX - el.offsetLeft);
     setScrollLeftState(el.scrollLeft);
@@ -74,6 +128,7 @@ export default function TestimonialsCarousel() {
     const x = e.pageX - el.offsetLeft;
     const walk = (x - startX) * 1.5;
     el.scrollLeft = scrollLeftState - walk;
+    updateScrollState();
   };
 
   const onMouseUpOrLeave = () => {
@@ -189,21 +244,8 @@ export default function TestimonialsCarousel() {
             </p>
           </div>
 
-          {/* Navigation Controls: Arrows + Progress */}
-          <div className="flex items-center gap-3 self-end sm:self-auto">
-            <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500 font-mono mr-2">
-              <span>Progress</span>
-              <div className="w-20 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-primary rounded-full transition-[width] duration-150 ease-out"
-                  style={{ width: `${Math.max(15, scrollPercentage)}%` }}
-                />
-              </div>
-              <span className="font-semibold text-slate-700 min-w-[32px] text-right">
-                {scrollPercentage}%
-              </span>
-            </div>
-
+          {/* Navigation Controls: Arrows */}
+          <div className="flex items-center gap-2 self-end sm:self-auto">
             <button
               onClick={() => handleScroll('left')}
               disabled={!canScrollLeft}
@@ -238,7 +280,7 @@ export default function TestimonialsCarousel() {
           onMouseMove={onMouseMove}
           onMouseUp={onMouseUpOrLeave}
           onMouseLeave={onMouseUpOrLeave}
-          className={`flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-none py-3 px-1 select-none ${
+          className={`flex gap-5 overflow-x-auto scrollbar-none py-3 px-1 select-none ${
             isDragging ? 'cursor-grabbing' : 'cursor-grab'
           }`}
           style={{ WebkitOverflowScrolling: 'touch' }}

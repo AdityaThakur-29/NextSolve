@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { MapPin, Calendar, ChevronLeft, ChevronRight, X, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Marquee } from '@/components/ui/marquee';
-import { ProgressiveBlur } from '@/components/ui/progressive-blur';
 
 const proofImages = [
   {
@@ -75,21 +74,14 @@ function ProofCard({ img, onClick }: { img: (typeof proofImages)[0]; onClick: ()
           sizes="(max-width: 768px) 310px, 370px"
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        <ProgressiveBlur
-          position="bottom"
-          height="60%"
-          className="pointer-events-none z-10"
-          blurLevels={[0.5, 1, 2, 4, 8, 16]}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/30 to-transparent opacity-75 group-hover:opacity-90 transition-opacity z-10 pointer-events-none"></div>
-
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity z-10 pointer-events-none"></div>
 
         <div className="absolute bottom-3 left-3 right-3 text-white z-20">
-          <div className="flex items-center gap-1 text-[11px] text-emerald-200 mb-0.5">
-            <MapPin className="w-3 h-3 shrink-0" />
+          <div className="flex items-center gap-1 text-[11px] text-emerald-300 font-medium mb-0.5">
+            <MapPin className="w-3 h-3 shrink-0 text-emerald-400" />
             <span className="truncate">Thakur College Campus, Mumbai</span>
           </div>
-          <h4 className="font-bold text-sm text-white truncate">{img.title}</h4>
+          <h4 className="font-bold text-sm text-white !text-white truncate drop-shadow-sm">{img.title}</h4>
         </div>
       </div>
 
@@ -185,12 +177,6 @@ export default function DeploymentGallery() {
                   alt={proofImages[selectedImage].title}
                   fill
                   className="object-contain"
-                />
-                <ProgressiveBlur
-                  position="bottom"
-                  height="30%"
-                  className="pointer-events-none z-10"
-                  blurLevels={[0.5, 1, 2, 4, 8, 16]}
                 />
               </div>
 
