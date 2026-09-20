@@ -11,6 +11,7 @@ import ContactForm from '@/components/ContactForm';
 import DigitalPipelineBeam from '@/components/DigitalPipelineBeam';
 import CircleExpandButton from '@/components/CircleExpandButton';
 import { Ripple } from '@/components/ui/ripple';
+import { GridBackground } from '@/components/ui/grid-background';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AnimatedCounter } from '@/components/Animations';
@@ -452,8 +453,15 @@ export default function HomePage() {
         {/* ============================================================ */}
         {/* SECTION 11 — ROI CALCULATOR */}
         {/* ============================================================ */}
-        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70 scroll-mt-20" id="calculator">
-          <div className="container-custom max-w-5xl">
+        <section className="section-padding bg-slate-50/60 border-y border-slate-200/70 scroll-mt-20 relative overflow-hidden" id="calculator">
+          <GridBackground
+            gridColor="rgba(148, 163, 184, 0.2)"
+            gridSize={36}
+            mask="radial"
+            showGlow={true}
+            glowColor="rgba(59, 130, 246, 0.07)"
+          />
+          <div className="container-custom max-w-5xl relative z-10">
             <div className="max-w-2xl mx-auto text-center mb-12">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 Institutional Calculator
@@ -494,8 +502,15 @@ export default function HomePage() {
         {/* ============================================================ */}
         {/* SECTION 13 — FINAL CLOSING CTA + CONTACT FORM */}
         {/* ============================================================ */}
-        <section className="section-padding bg-slate-50 border-t border-slate-200/80 scroll-mt-20" id="contact">
-          <div className="container-custom max-w-3xl">
+        <section className="section-padding bg-slate-50 border-t border-slate-200/80 scroll-mt-20 relative overflow-hidden" id="contact">
+          <GridBackground
+            gridColor="rgba(148, 163, 184, 0.22)"
+            gridSize={32}
+            mask="radial"
+            showGlow={true}
+            glowColor="rgba(59, 130, 246, 0.08)"
+          />
+          <div className="container-custom max-w-3xl relative z-10">
             <div className="text-center mb-10">
               <span className="text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                 Campus Onboarding

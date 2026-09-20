@@ -96,7 +96,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="text-center sm:text-left min-w-0">
-                  <span className="text-xs font-bold text-primary uppercase tracking-wider">Co-Founder</span>
+                  <span className="text-xs font-bold text-primary uppercase tracking-wider">Founder</span>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 mt-0.5">Jagruti Morvekar</h3>
                   <p className="text-xs text-slate-500 font-medium">NextSolves Founder</p>
                   <p className="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
@@ -116,7 +116,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="text-center sm:text-left min-w-0">
-                  <span className="text-xs font-bold text-primary uppercase tracking-wider">Co-Founder</span>
+                  <span className="text-xs font-bold text-primary uppercase tracking-wider">Founder</span>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 mt-0.5">Om Murkar</h3>
                   <p className="text-xs text-slate-500 font-medium">NextSolves Founder</p>
                   <p className="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
