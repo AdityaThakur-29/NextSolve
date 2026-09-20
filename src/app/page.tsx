@@ -10,6 +10,7 @@ import ComparisonTable from '@/components/ComparisonTable';
 import ContactForm from '@/components/ContactForm';
 import DigitalPipelineBeam from '@/components/DigitalPipelineBeam';
 import CircleExpandButton from '@/components/CircleExpandButton';
+import { Ripple } from '@/components/ui/ripple';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AnimatedCounter } from '@/components/Animations';
@@ -121,7 +122,8 @@ export default function HomePage() {
         {/* ============================================================ */}
         {/* SECTION 1 — HERO */}
         {/* ============================================================ */}
-        <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 overflow-hidden hero-radial-pattern hero-concentric-circles border-b border-slate-100">
+        <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 overflow-hidden bg-gradient-to-b from-blue-50/50 via-blue-50/15 to-white border-b border-slate-100">
+          <Ripple mainCircleSize={340} numCircles={11} circleSpacing={120} mainCircleOpacity={0.32} />
           <div className="container-custom relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-6">
               {/* Centered Pill Announcement */}
